@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,9 +16,58 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        Role::insert([
+            [
+                'name' => 'superadmin'
+            ],
+            [
+                'name' => 'marketing'
+            ],
+            [
+                'name' => 'sales'
+            ],
+            [
+                'name' => 'production'
+            ]
         ]);
+
+        $users = [
+            [
+                'role_id' => '1',
+                'name' => 'admin',
+                'email' => 'admin@gmail.com',
+                'password' => '123123',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'role_id' => '2',
+                'name' => 'marketing',
+                'email' => 'marketing@gmail.com',
+                'password' => '123123',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'role_id' => '3',
+                'name' => 'sales',
+                'email' => 'sales@gmail.com',
+                'password' => '123123',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'role_id' => '4',
+                'name' => 'production',
+                'email' => 'production@gmail.com',
+                'password' => '123123',
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ];
+
+        foreach ($users as $user) {
+            User::create($user);
+        }
     }
 }
