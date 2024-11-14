@@ -5,6 +5,7 @@ namespace App\Providers\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -16,6 +17,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class AdminPanelProvider extends PanelProvider
@@ -27,7 +29,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->brandLogo(asset('assets/image/logo.png'))
-            ->brandLogoHeight('50px')
+            ->brandLogoHeight('40px')
             ->login()
             ->colors([
                 'primary' => Color::Red,
@@ -38,6 +40,11 @@ class AdminPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
+            ->navigationItems([
+                NavigationItem::make('Testimonials'),
+                NavigationItem::make('Warriors'),
+                NavigationItem::make('Users'),
+            ])
             ->widgets([
                 Widgets\AccountWidget::class,
             ])

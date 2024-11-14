@@ -42,6 +42,16 @@ export default function Footer() {
                             <Instagram className="duration-20 h-4 w-4 transition group-hover:-translate-y-1" />
                         </Link>
                     </li>
+                    <li>
+                        <Link href="/" className="group">
+                            <img
+                                src="/assets/image/icons/linkedin.svg"
+                                width={17}
+                                className="transition duration-200 group-hover:-translate-y-1"
+                                alt="linkedin"
+                            />
+                        </Link>
+                    </li>
                 </ul>
             </div>
         </div>

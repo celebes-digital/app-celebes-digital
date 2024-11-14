@@ -120,18 +120,6 @@ export default function About() {
                                 untuk mengoptimalkan operasi dan meningkatkan
                                 pengalaman pengguna.
                             </p>
-                            <p className="text-sm leading-[150%] tracking-[1%] md:text-base">
-                                Keberhasilan kami didorong oleh tiga nilai inti:
-                                inovasi, kualitas, dan kemitraan. Kami terus
-                                berinovasi dengan teknologi terbaru, memastikan
-                                setiap proyek dikerjakan dengan standar kualitas
-                                tertinggi, dan bekerja sama erat dengan klien
-                                untuk mencapai hasil terbaik. Berlokasi di
-                                Makassar, kami siap membantu mewujudkan visi
-                                teknologi Anda dengan solusi aplikasi kustom
-                                yang handal dan efektif. Mari bermitra dan bawa
-                                bisnis Anda ke level berikutnya!
-                            </p>
                         </div>
                     </div>
                     <div className="relative flex justify-center">
