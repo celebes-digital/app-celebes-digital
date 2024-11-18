@@ -7,9 +7,12 @@ use App\Filament\Resources\AkunResource\RelationManagers;
 use App\Models\User;
 use Carbon\Carbon;
 use Filament\Forms;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Pages\Page;
+use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
@@ -47,56 +50,49 @@ class AkunResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')
-                    ->placeholder('Nama karyawan')
-                    ->required()
-                    ->maxLength(255)
-                    ->columnSpan(2),
+                Section::make([
+                    TextInput::make('name')
+                        ->placeholder('Nama karyawan')
+                        ->required()
+                        ->maxLength(255)
+                        ->columnSpan(2),
 
-                TextInput::make('email')
-                    ->placeholder('Email karyawan')
-                    ->email()
-                    ->maxLength(255)
-                    ->required()
-                    ->rules(fn(?Model $record): array => [
-                        Rule::unique('users', 'email')->ignore($record?->id),
-                    ]),
+                    TextInput::make('email')
+                        ->placeholder('Email karyawan')
+                        ->email()
+                        ->maxLength(255)
+                        ->unique(ignoreRecord: true)
+                        ->required(),
 
-                Select::make('role_id')
-                    ->placeholder('Role karyawan')
-                    ->required()
-                    ->name('role')
-                    ->options([
-                        '2' => 'Marketing',
-                        '3' => 'Sales',
-                        '4' => 'Production'
-                    ]),
+                    Select::make('role_id')
+                        ->placeholder('Role karyawan')
+                        ->required()
+                        ->label('role')
+                        ->options([
+                            '2' => 'Marketing',
+                            '3' => 'Sales',
+                            '4' => 'Production'
+                        ]),
 
-                TextInput::make('password')
-                    ->password()
-                    ->placeholder('Password akun karyawan')
-                    ->autocomplete(false)
-                    ->required(fn(?Model $record) => ! $record)
-                    ->dehydrateStateUsing(
-                        fn($state) =>
-                        filled($state) ? $state : null
-                    )
-                    ->dehydrated(fn($state) => filled($state))
-                    ->maxLength(255)
-                    ->revealable()
-                    ->confirmed(),
+                    TextInput::make('password')
+                        ->password()
+                        ->placeholder('Password akun karyawan')
+                        ->autocomplete(false)
+                        ->required(fn(Page $livewire): bool => $livewire instanceof CreateRecord)
+                        ->dehydrated(fn($state) => filled($state))
+                        ->maxLength(255)
+                        ->revealable()
+                        ->confirmed(),
 
-                TextInput::make('password_confirmation')
-                    ->name('Password Confirmation')
-                    ->password()
-                    ->autocomplete(false)
-                    ->required(
-                        fn(?Model $record, $get) =>
-                        ! $record || filled($get('password'))
-                    )
-                    ->revealable()
-                    ->placeholder('Konfirmasi password')
-                    ->dehydrated(false)
+                    TextInput::make('password_confirmation')
+                        ->name('Password Confirmation')
+                        ->password()
+                        ->autocomplete(false)
+                        ->required(fn(Page $livewire): bool => $livewire instanceof CreateRecord)
+                        ->revealable()
+                        ->placeholder('Konfirmasi password')
+                        ->dehydrated(false)
+                ])
             ]);
     }
 
@@ -128,6 +124,7 @@ class AkunResource extends Resource
                     ->placeholder('Semua Role'),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
             ])

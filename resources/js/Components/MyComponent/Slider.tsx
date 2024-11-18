@@ -1,22 +1,21 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
-import '../../../css/slider.css'
+import "../../../css/slider.css";
 
 // import required modules
-import { Autoplay, EffectCoverflow } from 'swiper/modules';
+import { Autoplay, EffectCoverflow } from "swiper/modules";
 
 export default function Slider() {
     return (
         <Swiper
-            effect={'coverflow'}
+            effect={"coverflow"}
             grabCursor={true}
-            slidesPerView={'auto'}
-            initialSlide={2}
+            slidesPerView={"auto"}
             loop={true}
             centeredSlides={true}
             autoplay={true}
@@ -26,7 +25,6 @@ export default function Slider() {
                 depth: 400,
                 modifier: 1,
                 slideShadows: true,
-
             }}
             modules={[EffectCoverflow, Autoplay]}
             className="mySwiper"

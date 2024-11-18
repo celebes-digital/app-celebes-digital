@@ -1,6 +1,7 @@
 import { useInView } from "@/hooks/useInView";
+import { Client } from "@/types";
 
-export default function About() {
+export default function About({ clients }: { clients: Client[] }) {
     const { ref: svgRef, isVisible } = useInView({
         threshold: 0.5,
         rootMargin: "50px",
@@ -49,36 +50,19 @@ export default function About() {
                     </span>
                 </p>
                 <div className="scroll-hidden flex items-center gap-10 overflow-x-auto">
-                    <img
-                        src="/assets/image/google.png"
-                        alt="google"
-                        className="opacity-30 transition duration-200 hover:opacity-100"
-                        width={100}
-                    />
-                    <img
-                        src="/assets/image/microsoft.png"
-                        alt="microsoft"
-                        className="opacity-30 transition duration-200 hover:opacity-100"
-                        width={150}
-                    />
-                    <img
-                        src="/assets/image/apple.png"
-                        alt="apple"
-                        className="opacity-30 transition duration-200 hover:opacity-100"
-                        width={100}
-                    />
-                    <img
-                        src="/assets/image/blackrock.png"
-                        alt="blackrock"
-                        className="opacity-30 transition duration-200 hover:opacity-100"
-                        width={110}
-                    />
-                    <img
-                        src="/assets/image/nvidia.png"
-                        alt="nvidia"
-                        className="opacity-30 transition duration-200 hover:opacity-100"
-                        width={120}
-                    />
+                    {clients.length > 0 ? (
+                        clients.map((client, i) => (
+                            <img
+                                src={`/storage/${client.image}`}
+                                alt={client.name}
+                                key={i}
+                                className="opacity-30 transition duration-200 hover:opacity-100"
+                                height={20}
+                            />
+                        ))
+                    ) : (
+                        <p>Belum ada data client yang dibuat.</p>
+                    )}
                 </div>
             </div>
 

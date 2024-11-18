@@ -1,45 +1,58 @@
 import Hero from "@/Components/MyComponent/Hero";
-import StudiKasusCard, { Category } from "@/Components/MyComponent/StudiKasusCard";
+import StudiKasusCard, {
+    CategoryButton,
+} from "@/Components/MyComponent/StudiKasusCard";
 import GuestLayout from "@/Layouts/GuestLayout";
+import { Category, Portofolio } from "@/types";
 import { Filter } from "lucide-react";
 
-export default function CaseStudy() {
+export default function CaseStudy({
+    portofolios,
+    categories,
+}: {
+    portofolios: Portofolio[];
+    categories: Category[];
+}) {
     return (
         <GuestLayout>
-            <Hero title="Studi Kasus" subtitle="Kasus Nyata, Dampak Nyata: Solusi yang Mengubah Industri" />
+            <Hero
+                title="Studi Kasus"
+                subtitle="Kasus Nyata, Dampak Nyata: Solusi yang Mengubah Industri"
+            />
 
-            <div className="py-20 space-y-5 container">
-                <div className="px-5">
-                    <div className="border-b gap-5 border-b-black space-y-5 md:space-y-0 pb-2 md:flex md:justify-between md:items-center">
-                        <div className="flex items-center gap-2 mb-3">
+            <div className="container px-5 space-y-5 py-20">
+                <div className="px-2">
+                    <div className="gap-5 space-y-5 border-b border-b-black pb-2 md:flex md:items-center md:justify-between md:space-y-0">
+                        <div className="mb-3 flex items-center gap-2">
                             <h4 className="font-semibold">Filter</h4>
-                            <Filter className="w-5 h-5" />
+                            <Filter className="h-5 w-5" />
                         </div>
                         <ul className="flex flex-wrap items-center gap-2">
                             <li className="mb-3">
-                                <Category name="All" href="" />
+                                <CategoryButton name="All" />
                             </li>
-                            <li className="mb-3">
-                                <Category name="UI/UX" href="?category=ui_ux" />
-                            </li>
-                            <li className="mb-3">
-                                <Category name="Website Development" href="?category=website_development" />
-                            </li>
-                            <li className="mb-3">
-                                <Category name="App Development" href="?category=app_development" />
-                            </li>
+                            {categories.map((category, i) => (
+                                <li className="mb-3">
+                                    <CategoryButton
+                                        name={category.name}
+                                        id={category.id}
+                                        key={i}
+                                    />
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>
-                <div className="flex flex-wrap justify-center gap-3">
-                    <StudiKasusCard />
-                    <StudiKasusCard />
-                    <StudiKasusCard />
-                    <StudiKasusCard />
-                    <StudiKasusCard />
-                    <StudiKasusCard />
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {portofolios.length > 0 ? (
+                        portofolios.map((portofolio, i) => (
+                            <StudiKasusCard portofolio={portofolio} key={i} />
+                        ))
+                    ) : (
+                        <p>Belum ada portofolio yang ditambah.</p>
+                    )}
                 </div>
             </div>
         </GuestLayout>
-    )
+    );
 }

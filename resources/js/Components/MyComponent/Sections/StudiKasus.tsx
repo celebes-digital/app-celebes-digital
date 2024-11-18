@@ -2,15 +2,24 @@ import { Link } from "@inertiajs/react";
 import StudiKasusCard from "../StudiKasusCard";
 import { useInView } from "@/hooks/useInView";
 import { Button } from "@/Components/ui/button";
+import { Portofolio } from "@/types";
 
-export default function StudiKasus() {
+export default function StudiKasus({
+    portofolios,
+}: {
+    portofolios: Portofolio[];
+}) {
     const { ref, isVisible } = useInView();
     const { ref: svgRef2, isVisible: isVisible2 } = useInView();
 
     return (
         <div className="relative" id="case">
-            <img src="/assets/image/halfcircle_2.png" className="absolute right-0 -top-10 h-72" alt="half circle" />
-            <div className="font-jakarta relative container space-y-14 py-20">
+            <img
+                src="/assets/image/halfcircle_2.png"
+                className="absolute -top-10 right-0 h-72"
+                alt="half circle"
+            />
+            <div className="font-jakarta container px-5 relative space-y-14 py-20">
                 <div className="relative space-y-5 text-center">
                     <svg
                         width="115"
@@ -71,10 +80,14 @@ export default function StudiKasus() {
                         Industri
                     </p>
                 </div>
-                <div className="flex flex-wrap justify-center gap-5">
-                    <StudiKasusCard />
-                    <StudiKasusCard />
-                    <StudiKasusCard />
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {portofolios.length > 0 ? (
+                        portofolios.map((portofolio, i) => (
+                            <StudiKasusCard portofolio={portofolio} key={i} />
+                        ))
+                    ) : (
+                        <p>Belum ada portofolio yang dibuat.</p>
+                    )}
                 </div>
                 <div className="flex justify-center">
                     <Button

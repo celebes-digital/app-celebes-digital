@@ -1,15 +1,23 @@
-import { Kasus } from "@/types";
+import {
+    extractFirstParagraph,
+    extractFirstSentence,
+} from "@/lib/paragrafExtract";
+import { Category, Portofolio } from "@/types";
 import { Link } from "@inertiajs/react";
 
-export default function StudiKasusCard({ kasus }: { kasus?: Kasus }) {
+export default function StudiKasusCard({
+    portofolio,
+}: {
+    portofolio: Portofolio;
+}) {
     return (
-        <div className="max-w-sm space-y-3 mb-3 p-2">
+        <div className="mb-3 max-w-sm md:max-w-none mx-auto w-full space-y-3 p-2">
             <Link
-                href="/case/1/detail"
+                href={`/case/${portofolio.id}/detail`}
                 className="group relative block overflow-hidden rounded-[10px] after:absolute after:top-0 after:h-full after:w-full after:bg-gradient-to-b after:from-[#292929]/0 after:to-[#292929] after:opacity-0 after:transition after:duration-300 hover:after:opacity-100"
             >
                 <img
-                    src="/assets/image/card-1.png"
+                    src={`/storage/${portofolio.thumbnail}`}
                     className="w-full transition duration-300 group-hover:scale-105"
                     alt="image"
                 />
@@ -17,30 +25,35 @@ export default function StudiKasusCard({ kasus }: { kasus?: Kasus }) {
             <div className="space-y-5 p-2">
                 <div className="space-y-2">
                     <Link
-                        href="/case/1/detail"
+                        href={`/case/${portofolio.id}/detail`}
                         className="text-2xl font-bold hover:underline"
                     >
-                        UBS
+                        {portofolio.name}
                     </Link>
                     <p className="text-sm">
-                        Unified payment flows and seamless mobile experience
-                        across all mobile banking app features
+                        {extractFirstSentence(
+                            extractFirstParagraph(portofolio.description),
+                        )}
                     </p>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                    <Category name="UI/UX" href="/" />
-                    <Category name="Website Development" href="/" />
-                    <Category name="App Development" href="/" />
+                    {portofolio.categories.map((category, i) => (
+                        <CategoryButton
+                            name={category.name}
+                            id={category.id}
+                            key={i}
+                        />
+                    ))}
                 </div>
             </div>
         </div>
     );
 }
 
-export function Category({ name, href }: { name: string; href: string }) {
+export function CategoryButton({ name, id }: { name: string; id?: number }) {
     return (
         <Link
-            href={href}
+            href={`${id ? "/case?category=${id}" : "/case"}`}
             className="h-fit rounded-full border-[1.5px] border-black px-5 py-1.5 text-sm font-medium leading-[150%] tracking-[2%] transition hover:bg-black hover:text-white"
         >
             {name}

@@ -4,7 +4,10 @@ import { Instagram } from "lucide-react";
 export default function InfobBar() {
     return (
         <div className="hidden bg-primary text-white lg:block">
-            <div className="container flex items-center justify-between p-5" id="home">
+            <div
+                className="container flex items-center justify-between p-5"
+                id="home"
+            >
                 <ul className="flex items-center gap-4">
                     <li className="flex items-center gap-2 text-xs">
                         <img

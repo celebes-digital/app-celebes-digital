@@ -59,10 +59,11 @@ export default function Home() {
                     />
                 </svg>
 
-                <Button className="hover:bg-red bg-primary p-6 font-semibold transition hover:scale-105" asChild>
-                    <Link href="#about">
-                        Pelajari Lebih Lanjut
-                    </Link>
+                <Button
+                    className="hover:bg-red bg-primary p-6 font-semibold transition hover:scale-105"
+                    asChild
+                >
+                    <Link href="#about">Pelajari Lebih Lanjut</Link>
                 </Button>
             </div>
         </div>

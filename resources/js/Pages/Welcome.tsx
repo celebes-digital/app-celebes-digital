@@ -6,15 +6,24 @@ import StudiKasus from "@/Components/MyComponent/Sections/StudiKasus";
 import Testimonials from "@/Components/MyComponent/Sections/Testimonials";
 import Warriors from "@/Components/MyComponent/Sections/Warriors";
 import GuestLayout from "@/Layouts/GuestLayout";
+import { Client, Portofolio, Testimoni } from "@/types";
 
-export default function Welcome() {
+export default function Welcome({
+    portofolios,
+    testimonials,
+    clients,
+}: {
+    portofolios: Portofolio[];
+    testimonials: Testimoni[];
+    clients: Client[];
+}) {
     return (
         <GuestLayout>
             <Home />
-            <About />
-            <StudiKasus />
+            <About clients={clients} />
+            <StudiKasus portofolios={portofolios} />
             <Warriors />
-            <Testimonials />
+            <Testimonials testimonials={testimonials} />
             <JoinUs />
             <FindUs />
         </GuestLayout>

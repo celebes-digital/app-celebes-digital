@@ -5,7 +5,7 @@ import { PropsWithChildren } from "react";
 
 export default function GuestLayout({ children }: PropsWithChildren) {
     return (
-        <div className="min-h-screen bg-neutral-50">
+        <div className="min-h-screen bg-[#F8F8F8]">
             <InfobBar />
             <Navbar />
 

@@ -53,9 +53,7 @@ export default function Navbar() {
                         asChild
                         className="hidden border-2 border-black bg-transparent p-5 transition duration-300 hover:scale-[1.05] hover:bg-black hover:text-white md:flex"
                     >
-                        <Link href="/contact">
-                            Kontak Kami
-                        </Link>
+                        <Link href="/contact">Kontak Kami</Link>
                     </Button>
 
                     <Sheet>
@@ -94,9 +92,7 @@ export default function Navbar() {
                                     asChild
                                     className="border-2 border-black bg-transparent p-5 hover:bg-black hover:text-white md:hidden"
                                 >
-                                    <Link href="/contact">
-                                        Kontak Kami
-                                    </Link>
+                                    <Link href="/contact">Kontak Kami</Link>
                                 </Button>
                             </div>
                         </SheetContent>
