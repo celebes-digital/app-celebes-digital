@@ -148,3 +148,11 @@ html {
         0 4px 15px rgba(0, 0, 0, 0.1),
         0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+.testimonial .rfm-marquee {
+    align-items: start !important;
+}
+
+.testimonial .rfm-initial-child-container {
+    align-items: start !important;
+}

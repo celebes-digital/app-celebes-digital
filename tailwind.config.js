@@ -13,6 +13,15 @@ export default {
 
     theme: {
         extend: {
+            animation: {
+                "loop-scroll": "loop-scroll 35s linear infinite",
+            },
+            keyframes: {
+                "loop-scroll": {
+                    from: { transform: "translateX(0)" },
+                    to: { transform: "translateX(-100%)" },
+                },
+            },
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
             },

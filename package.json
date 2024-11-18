@@ -37,6 +37,7 @@
         "embla-carousel-react": "^8.3.1",
         "lucide": "^0.454.0",
         "lucide-react": "^0.454.0",
+        "react-fast-marquee": "^1.6.5",
         "react-hook-form": "^7.53.2",
         "swiper": "^10.0.0",
         "tailwind-merge": "^2.5.4",

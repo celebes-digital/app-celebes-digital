@@ -1,5 +1,6 @@
 import { useInView } from "@/hooks/useInView";
 import { Client } from "@/types";
+import ClientSlider from "../ClientSlider";
 
 export default function About({ clients }: { clients: Client[] }) {
     const { ref: svgRef, isVisible } = useInView({
@@ -26,7 +27,7 @@ export default function About({ clients }: { clients: Client[] }) {
                 className="absolute left-0 top-1/3 h-72 -translate-y-1/3"
                 alt="half circle"
             />
-            <div className="flex flex-col items-center space-y-10 px-5 py-16">
+            <div className="container flex flex-col overflow-hidden items-center space-y-10 px-5 py-16">
                 <p className="w-fit text-center font-semibold leading-[150%] tracking-[2%]">
                     Dipercaya oleh perusahaan besar dan kecil,
                     <span className="relative inline-block sm:ml-1 sm:inline">
@@ -49,22 +50,10 @@ export default function About({ clients }: { clients: Client[] }) {
                         </svg>
                     </span>
                 </p>
-                <div className="scroll-hidden flex items-center gap-10 overflow-x-auto">
-                    {clients.length > 0 ? (
-                        clients.map((client, i) => (
-                            <img
-                                src={`/storage/${client.image}`}
-                                alt={client.name}
-                                key={i}
-                                className="opacity-30 transition duration-200 hover:opacity-100"
-                                height={20}
-                            />
-                        ))
-                    ) : (
-                        <p>Belum ada data client yang dibuat.</p>
-                    )}
-                </div>
             </div>
+
+            <ClientSlider clients={clients} />
+
 
             <div className="container px-5 py-20" id="about">
                 <div className="grid items-center gap-5 md:grid-cols-2">

@@ -48,7 +48,7 @@ class ClientResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('image')->label('Company Image')->height('40px'),
+                ImageColumn::make('image')->label('Company Image')->height('35px'),
                 TextColumn::make('name'),
             ])
             ->filters([
