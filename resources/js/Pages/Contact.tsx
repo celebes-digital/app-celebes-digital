@@ -1,8 +1,34 @@
 import Hero from "@/Components/MyComponent/Hero";
 import { Button } from "@/Components/ui/button";
 import GuestLayout from "@/Layouts/GuestLayout";
+import { useForm } from "@inertiajs/react";
+import { SyntheticEvent } from "react";
+import toast from "react-hot-toast";
 
 export default function Contact() {
+    const { data, setData, post, processing, errors, reset } = useForm({
+        name: '',
+        no_telepon: '',
+        email: '',
+        ide: ''
+    })
+
+    const submit = (e: SyntheticEvent) => {
+        e.preventDefault()
+        post('/contact', {
+            onSuccess: () => {
+                toast.success('Mengirim pesan berhasil!')
+                reset()
+            },
+            onError: (err) => {
+                toast.error('Gagal mengirim pesan!')
+                console.log(err)
+
+            }
+        })
+        console.log(data)
+    }
+
     return (
         <GuestLayout>
             <Hero
@@ -16,48 +42,70 @@ export default function Contact() {
                         <h1 className="text-2xl font-bold leading-[150%] tracking-[2%]">
                             Beritahu Kami Idemu
                         </h1>
-                        <form action="" className="space-y-5">
+                        <form onSubmit={submit} className="space-y-5">
                             <div className="grid gap-2">
                                 <label htmlFor="name" className="font-semibold">
                                     Nama
                                 </label>
                                 <input
                                     type="text"
+                                    value={data.name}
+                                    name="name"
+                                    id="name"
+                                    onChange={(e) => setData('name', e.target.value)}
                                     placeholder="Cth. John Doe"
                                     className="rounded-full border px-5 py-2 focus:border-primary focus:outline-none focus:ring-0 focus:ring-offset-0"
                                 />
+                                {errors.name && <span className="text-red-700">{errors.name}</span>}
                             </div>
                             <div className="grid gap-2">
-                                <label htmlFor="name" className="font-semibold">
+                                <label htmlFor="no_telepon" className="font-semibold">
                                     No. Telpon
                                 </label>
                                 <input
-                                    type="text"
+                                    type="tel"
+                                    value={data.no_telepon}
+                                    onChange={(e) => setData('no_telepon', e.target.value)}
+                                    name="no_telepon"
+                                    id="no_telepon"
                                     placeholder="Cth. 085"
                                     className="rounded-full border px-5 py-2 focus:border-primary focus:outline-none focus:ring-0 focus:ring-offset-0"
                                 />
+                                {errors.no_telepon && <span className="text-red-700">{errors.no_telepon}</span>}
+
                             </div>
                             <div className="grid gap-2">
-                                <label htmlFor="name" className="font-semibold">
+                                <label htmlFor="email" className="font-semibold">
                                     Email
                                 </label>
                                 <input
                                     type="email"
+                                    value={data.email}
+                                    onChange={(e) => setData('email', e.target.value)}
+                                    name="email"
+                                    id="email"
                                     placeholder="johndoe@contoh.com"
                                     className="rounded-full border px-5 py-2 focus:border-primary focus:outline-none focus:ring-0 focus:ring-offset-0"
                                 />
+                                {errors.email && <span className="text-red-700">{errors.email}</span>}
                             </div>
                             <div className="grid gap-2">
-                                <label htmlFor="name" className="font-semibold">
+                                <label htmlFor="ide" className="font-semibold">
                                     Ide Kamu
                                 </label>
                                 <textarea
                                     placeholder="Deskripsikan Idemu"
+                                    value={data.ide}
+                                    name="ide"
+                                    id="ide"
+                                    onChange={(e) => setData('ide', e.target.value)}
                                     className="h-[150px] rounded-xl border px-5 py-2 focus:border-primary focus:outline-none focus:ring-0 focus:ring-offset-0"
                                 ></textarea>
+                                {errors.ide && <span className="text-red-700">{errors.ide}</span>}
                             </div>
                             <Button
                                 type="submit"
+                                disabled={processing}
                                 className="hover:bg-red bg-primary p-6 font-semibold transition hover:scale-105"
                             >
                                 Kirim
@@ -116,8 +164,8 @@ export default function Contact() {
                                     xmlns="http://www.w3.org/2000/svg"
                                 >
                                     <path
-                                        fill-rule="evenodd"
-                                        clip-rule="evenodd"
+                                        fillRule="evenodd"
+                                        clipRule="evenodd"
                                         d="M5.05025 4.55025C7.78392 1.81658 12.2161 1.81658 14.9497 4.55025C17.6834 7.28392 17.6834 11.7161 14.9497 14.4497L10 19.3995L5.05025 14.4497C2.31658 11.7161 2.31658 7.28392 5.05025 4.55025ZM10 11.5C11.1046 11.5 12 10.6046 12 9.5C12 8.39543 11.1046 7.5 10 7.5C8.89543 7.5 8 8.39543 8 9.5C8 10.6046 8.89543 11.5 10 11.5Z"
                                         fill="#000000"
                                     />

@@ -58,7 +58,7 @@ export default function Slider({ warriors }: { warriors: Warrior[] }) {
                         >
                             {warriors.map((warrior, i) => (
                                 <SwiperSlide
-                                    className="group relative max-w-sm overflow-hidden rounded-lg after:absolute after:top-0 after:h-full after:w-full after:bg-gradient-to-b after:from-[#292929]/0 after:to-[#292929] after:opacity-0 after:transition after:duration-300 hover:after:opacity-100"
+                                    className="group relative max-w-80 overflow-hidden rounded-lg after:absolute after:top-0 after:h-full after:w-full after:bg-gradient-to-b after:from-[#292929]/0 after:to-[#292929] after:opacity-0 after:transition after:duration-300 hover:after:opacity-100"
                                     key={i}
                                 >
                                     <div className="absolute bottom-5 z-20 hidden w-full flex-col items-center gap-3 pb-4 opacity-0 transition duration-300 group-hover:opacity-100 lg:flex">

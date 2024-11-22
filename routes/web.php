@@ -2,9 +2,11 @@
 
 use App\Models\Category;
 use App\Models\Client;
+use App\Models\Pesanan;
 use App\Models\Portofolio;
 use App\Models\Warriors;
 use App\Models\Testimonials;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -41,4 +43,17 @@ Route::get('/case/{portofolio}/detail', function (Portofolio $portofolio) {
 
 Route::get('/contact', function () {
     return Inertia::render('Contact');
+})->name('contact');
+
+Route::post('/contact', function (Request $request) {
+    $v = $request->validate([
+        'name' => 'required|string|min:2|max:255',
+        'email' => 'required|email|min:2|max:255',
+        'no_telepon' => 'required|string|min:12|max:13',
+        'ide' => 'required|min:2'
+    ]);
+
+    Pesanan::create($v);
+
+    return redirect()->intended(route('contact'));
 });

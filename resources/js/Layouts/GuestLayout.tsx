@@ -11,6 +11,10 @@ export default function GuestLayout({ children }: PropsWithChildren) {
 
             <main>{children}</main>
 
+            <a href="https://www.whatsapp.com" className="bg-white rounded-full overflow-hidden fixed bottom-2 right-2 z-20">
+                <img src="/assets/image/icons/whatsapp.png" alt="whatsapp" width={60} />
+            </a>
+
             <Footer />
         </div>
     );

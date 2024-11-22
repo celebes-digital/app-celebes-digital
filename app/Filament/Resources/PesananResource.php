@@ -1,0 +1,80 @@
+<?php
+
+namespace App\Filament\Resources;
+
+use App\Filament\Resources\PesananResource\Pages;
+use App\Filament\Resources\PesananResource\RelationManagers;
+use App\Models\Pesanan;
+use Filament\Forms;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+
+class PesananResource extends Resource
+{
+    protected static ?string $model = Pesanan::class;
+
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    public static function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                Section::make([
+                    TextInput::make('name')
+                        ->required()
+                        ->maxLength(255),
+                    TextInput::make('no_telepon')
+                        ->required()
+                        ->maxLength(255),
+                    TextInput::make('email')
+                        ->required()
+                        ->maxLength(255),
+                    RichEditor::make('ide')
+                        ->required(),
+                ])
+            ]);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->columns([
+                TextColumn::make("name")->searchable(),
+                TextColumn::make("no_telepon"),
+                TextColumn::make("email")->searchable(),
+            ])
+            ->filters([
+                //
+            ])
+            ->actions([
+                Tables\Actions\ViewAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => Pages\ListPesanans::route('/'),
+        ];
+    }
+}

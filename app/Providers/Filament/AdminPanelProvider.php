@@ -46,6 +46,7 @@ class AdminPanelProvider extends PanelProvider
                 NavigationItem::make('Categories'),
                 NavigationItem::make('Warriors'),
                 NavigationItem::make('Testimonials'),
+                NavigationItem::make('Pesanans'),
                 NavigationItem::make('Users'),
             ])
             ->widgets([
