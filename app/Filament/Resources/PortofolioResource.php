@@ -33,19 +33,20 @@ class PortofolioResource extends Resource
                         ->directory('portofolios/thumbnails')
                         ->required(),
 
-                    Grid::make([
-                        'md' => 2
-                    ])->schema([
-                        Forms\Components\TextInput::make('name')
-                            ->required()
-                            ->maxLength(255),
+                    Forms\Components\TextInput::make('name')
+                        ->required()
+                        ->maxLength(255),
 
-                        Forms\Components\Select::make('categories')
-                            ->relationship('categories', 'name')
-                            ->multiple()
-                            ->preload()
-                            ->required(),
-                    ]),
+                    Forms\Components\Select::make('categories')
+                        ->relationship('categories', 'name')
+                        ->multiple()
+                        ->preload()
+                        ->required(),
+
+                    Forms\Components\TextInput::make('client')
+                        ->required()
+                        ->columnSpan(2)
+                        ->maxLength(255),
 
                     FileUpload::make('screenshots')
                         ->columnSpan(2)
@@ -57,7 +58,7 @@ class PortofolioResource extends Resource
                     Forms\Components\RichEditor::make('description')
                         ->required()
                         ->columnSpan(2),
-                ])
+                ])->columns(2)
             ]);
     }
 

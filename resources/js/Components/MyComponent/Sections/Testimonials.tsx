@@ -10,10 +10,16 @@ export default function Testimonials({
     const { ref, isVisible } = useInView();
 
     return (
-        <div className="font-jakarta py-20">
-            <div className="container px-5 space-y-10">
+        <div className="relative">
+            <img
+                src="/assets/image/halfcircle_2.png"
+                alt="half circle"
+                className="absolute right-0 top-0"
+                width={80}
+            />
+            <div className="font-jakarta container relative space-y-10 px-5 py-20">
                 <div className="space-y-5">
-                    <h2 className="relative mx-auto text-center w-fit text-3xl font-bold leading-[120%] md:text-4xl lg:text-[42px]">
+                    <h2 className="relative mx-auto w-fit text-center text-3xl font-bold leading-[120%] md:text-4xl lg:text-[42px]">
                         Suara{" "}
                         <span className="relative inline-block sm:ml-1 sm:inline">
                             Mereka
@@ -45,4 +51,3 @@ export default function Testimonials({
         </div>
     );
 }
-

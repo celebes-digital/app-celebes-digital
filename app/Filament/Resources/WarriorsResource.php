@@ -60,14 +60,22 @@ class WarriorsResource extends Resource
                         ->prefix('https://instagram.com/')
                         ->placeholder('Username Instagram')
                         ->dehydrateStateUsing(fn($state) => 'https://instagram.com/' . ltrim($state, '/'))
+                        ->formatStateUsing(function ($state) {
+                            if (!$state) return null;
+                            return str_replace('https://instagram.com/', '', $state);
+                        })
                         ->required(),
 
                     TextInput::make('linkedin')
                         ->prefix('https://linkedin.com/')
                         ->placeholder('Username Linkedin')
                         ->dehydrateStateUsing(fn($state) => 'https://linkedin.com/' . ltrim($state, '/'))
+                        ->formatStateUsing(function ($state) {
+                            if (!$state) return null;
+                            return str_replace('https://linkedin.com/', '', $state);
+                        })
                         ->required(),
-                ])
+                ])->columns(2)
             ]);
     }
 

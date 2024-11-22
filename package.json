@@ -39,7 +39,8 @@
         "lucide-react": "^0.454.0",
         "react-fast-marquee": "^1.6.5",
         "react-hook-form": "^7.53.2",
-        "swiper": "^10.0.0",
+        "react-id-swiper": "^4.0.0",
+        "swiper": "^11.1.15",
         "tailwind-merge": "^2.5.4",
         "tailwindcss-animate": "^1.0.7",
         "zod": "^3.23.8"

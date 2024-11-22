@@ -11,7 +11,7 @@ export default function StudiKasusCard({
     portofolio: Portofolio;
 }) {
     return (
-        <div className="mb-3 max-w-sm md:max-w-none mx-auto w-full space-y-3 p-2">
+        <div className="mx-auto mb-3 w-full max-w-sm space-y-3 p-2 md:max-w-none">
             <Link
                 href={`/case/${portofolio.id}/detail`}
                 className="group relative block overflow-hidden rounded-[10px] after:absolute after:top-0 after:h-full after:w-full after:bg-gradient-to-b after:from-[#292929]/0 after:to-[#292929] after:opacity-0 after:transition after:duration-300 hover:after:opacity-100"
@@ -53,7 +53,7 @@ export default function StudiKasusCard({
 export function CategoryButton({ name, id }: { name: string; id?: number }) {
     return (
         <Link
-            href={`${id ? "/case?category=${id}" : "/case"}`}
+            href={`${id ? `/case?category=${id}` : "/case"}`}
             className="h-fit rounded-full border-[1.5px] border-black px-5 py-1.5 text-sm font-medium leading-[150%] tracking-[2%] transition hover:bg-black hover:text-white"
         >
             {name}

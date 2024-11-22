@@ -19,7 +19,7 @@ export default function StudiKasus({
                 className="absolute -top-10 right-0 h-72"
                 alt="half circle"
             />
-            <div className="font-jakarta container px-5 relative space-y-14 py-20">
+            <div className="font-jakarta container relative space-y-14 px-5 py-20">
                 <div className="relative space-y-5 text-center">
                     <svg
                         width="115"
@@ -80,13 +80,15 @@ export default function StudiKasus({
                         Industri
                     </p>
                 </div>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     {portofolios.length > 0 ? (
                         portofolios.map((portofolio, i) => (
                             <StudiKasusCard portofolio={portofolio} key={i} />
                         ))
                     ) : (
-                        <p>Belum ada portofolio yang dibuat.</p>
+                        <p className="col-span-3 text-center">
+                            Belum ada portofolio yang ditambah.
+                        </p>
                     )}
                 </div>
                 <div className="flex justify-center">

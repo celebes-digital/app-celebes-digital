@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('thumbnail');
             $table->json('screenshots');
             $table->string('name');
+            $table->string('client');
             $table->text('description');
             $table->timestamps();
         });

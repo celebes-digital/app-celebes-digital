@@ -8,6 +8,7 @@ export interface User {
 export interface Portofolio {
     id: number;
     name: string;
+    client: string;
     description: string;
     thumbnail: string;
     screenshots: string[];
@@ -40,6 +41,15 @@ export interface Client {
     name: string;
     created_at: string;
     updated_at: string;
+}
+
+export interface Warrior {
+    id: number;
+    fullname: string;
+    profession: string;
+    instagram: string;
+    linkedin: string;
+    image: string;
 }
 
 export type PageProps<

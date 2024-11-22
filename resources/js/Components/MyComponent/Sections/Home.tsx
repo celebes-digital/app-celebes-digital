@@ -38,10 +38,10 @@ export default function Home() {
                     </h1>
 
                     <p className="mx-auto max-w-screen-sm text-sm font-medium tracking-[0.5%] md:text-base lg:max-w-screen-md">
-                        Kami merancang dan membuat situs web dan aplikasi kustom
-                        untuk membantu mendigitalisasikan bisnis anda.
-                        Percayakan kebutuhan pengembangan web dan aplikasi anda
-                        kepada kami!
+                        Percayakan kebutuhan pengembangan website dan aplikasi
+                        bisnismu kepada kami untuk membantu perusahaan anda
+                        bertransformasi digital dalam mencapai
+                        keunggulan yang kompetetif.
                     </p>
                 </div>
                 <svg

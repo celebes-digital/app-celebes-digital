@@ -27,7 +27,7 @@ export default function About({ clients }: { clients: Client[] }) {
                 className="absolute left-0 top-1/3 h-72 -translate-y-1/3"
                 alt="half circle"
             />
-            <div className="container flex flex-col overflow-hidden items-center space-y-10 px-5 py-16">
+            <div className="container flex flex-col items-center space-y-10 overflow-hidden px-5 py-16">
                 <p className="w-fit text-center font-semibold leading-[150%] tracking-[2%]">
                     Dipercaya oleh perusahaan besar dan kecil,
                     <span className="relative inline-block sm:ml-1 sm:inline">
@@ -50,10 +50,8 @@ export default function About({ clients }: { clients: Client[] }) {
                         </svg>
                     </span>
                 </p>
+                <ClientSlider clients={clients} />
             </div>
-
-            <ClientSlider clients={clients} />
-
 
             <div className="container px-5 py-20" id="about">
                 <div className="grid items-center gap-5 md:grid-cols-2">
