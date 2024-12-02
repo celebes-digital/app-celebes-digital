@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateWarriors extends CreateRecord
 {
     protected static string $resource = WarriorsResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

@@ -5,8 +5,14 @@ namespace App\Filament\Resources\PortofolioResource\Pages;
 use App\Filament\Resources\PortofolioResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Support\Facades\Auth;
 
 class CreatePortofolio extends CreateRecord
 {
     protected static string $resource = PortofolioResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

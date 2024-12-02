@@ -3,12 +3,10 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AkunResource\Pages;
-use App\Filament\Resources\AkunResource\RelationManagers;
 use App\Models\User;
 use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\Page;
@@ -19,31 +17,29 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
 
 class AkunResource extends Resource
 {
     protected static ?string $model = User::class;
 
+    protected static ?string $navigationGroup = 'Admin';
+
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
     public static function canAccess(): bool
     {
-        return Auth::user()->role->name === 'superadmin';
+        return Auth::user()->role->name === 'admin';
     }
 
-    // Menyembunyikan dari navigasi untuk non-superadmin
     public static function shouldRegisterNavigation(): bool
     {
-        return Auth::user()->role->name === 'superadmin';
+        return Auth::user()->role->name === 'admin';
     }
 
     public static function getNavigationVisibility(): bool
     {
-        return Auth::check() && Auth::user()->role->name === 'superadmin';
+        return Auth::check() && Auth::user()->role->name === 'admin';
     }
 
     public static function form(Form $form): Form
@@ -64,15 +60,10 @@ class AkunResource extends Resource
                         ->unique(ignoreRecord: true)
                         ->required(),
 
-                    Select::make('role_id')
-                        ->placeholder('Role karyawan')
-                        ->required()
-                        ->label('role')
-                        ->options([
-                            '2' => 'Marketing',
-                            '3' => 'Sales',
-                            '4' => 'Production'
-                        ]),
+                    Forms\Components\Select::make('role_id')
+                        ->relationship('role', 'name')
+                        ->preload()
+                        ->required(),
 
                     TextInput::make('password')
                         ->password()
@@ -92,7 +83,7 @@ class AkunResource extends Resource
                         ->revealable()
                         ->placeholder('Konfirmasi password')
                         ->dehydrated(false)
-                ])
+                ])->columns(2)
             ]);
     }
 
@@ -103,12 +94,24 @@ class AkunResource extends Resource
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('email')->searchable(),
                 TextColumn::make('role.name'),
-                TextColumn::make('created_at')->sortable()->formatStateUsing(
-                    fn(string $state) =>
-                    Carbon::parse($state)
-                        ->locale('id')
-                        ->translatedFormat('d F Y')
-                ),
+                TextColumn::make('created_at')
+                    ->sortable()
+                    ->formatStateUsing(
+                        fn(string $state) =>
+                        Carbon::parse($state)
+                            ->locale('id')
+                            ->translatedFormat('d F Y')
+                    )
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')
+                    ->sortable()
+                    ->formatStateUsing(
+                        fn(string $state) =>
+                        Carbon::parse($state)
+                            ->locale('id')
+                            ->translatedFormat('d F Y')
+                    )
+                    ->toggleable(isToggledHiddenByDefault: true)
             ])
             ->filters([
                 SelectFilter::make('role_id')

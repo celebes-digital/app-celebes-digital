@@ -3,9 +3,8 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ClientResource\Pages;
-use App\Filament\Resources\ClientResource\RelationManagers;
 use App\Models\Client;
-use Filament\Forms;
+use Carbon\Carbon;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
@@ -15,14 +14,30 @@ use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class ClientResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Sales';
+
     protected static ?string $model = Client::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-building-office';
+
+    public static function canAccess(): bool
+    {
+        return Auth::user()->role->name === 'admin' || Auth::user()->role->name === 'sales';
+    }
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return Auth::user()->role->name === 'admin' || Auth::user()->role->name === 'sales';
+    }
+
+    public static function getNavigationVisibility(): bool
+    {
+        return Auth::check() && (Auth::user()->role->name === 'admin' || Auth::user()->role->name === 'sales');
+    }
 
     public static function form(Form $form): Form
     {
@@ -50,6 +65,24 @@ class ClientResource extends Resource
             ->columns([
                 ImageColumn::make('image')->label('Company Image')->height('35px'),
                 TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->sortable()
+                    ->formatStateUsing(
+                        fn(string $state) =>
+                        Carbon::parse($state)
+                            ->locale('id')
+                            ->translatedFormat('d F Y')
+                    )
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->sortable()
+                    ->formatStateUsing(
+                        fn(string $state) =>
+                        Carbon::parse($state)
+                            ->locale('id')
+                            ->translatedFormat('d F Y')
+                    )
+                    ->toggleable(isToggledHiddenByDefault: true)
             ])
             ->filters([
                 //

@@ -3,24 +3,32 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PortofolioResource\Pages;
-use App\Filament\Resources\PortofolioResource\RelationManagers;
 use App\Models\Portofolio;
+use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class PortofolioResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Production';
+
     protected static ?string $model = Portofolio::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return Auth::user()->role->name === 'admin' || Auth::user()->role->name === 'production';
+    }
+
+    public static function getNavigationVisibility(): bool
+    {
+        return Auth::user()->role->name === 'admin' || Auth::user()->role->name === 'production';
+    }
 
     public static function form(Forms\Form $form): Forms\Form
     {
@@ -43,10 +51,11 @@ class PortofolioResource extends Resource
                         ->preload()
                         ->required(),
 
-                    Forms\Components\TextInput::make('client')
+                    Forms\Components\Select::make('client_id')
+                        ->relationship('client', 'name')
+                        ->preload()
                         ->required()
-                        ->columnSpan(2)
-                        ->maxLength(255),
+                        ->columnSpan(2),
 
                     FileUpload::make('screenshots')
                         ->columnSpan(2)
@@ -71,15 +80,28 @@ class PortofolioResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
 
-
                 Tables\Columns\TextColumn::make('categories.name')
                     ->badge()
                     ->separator(','),
 
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
                     ->sortable()
+                    ->formatStateUsing(
+                        fn(string $state) =>
+                        Carbon::parse($state)
+                            ->locale('id')
+                            ->translatedFormat('d F Y')
+                    )
                     ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->sortable()
+                    ->formatStateUsing(
+                        fn(string $state) =>
+                        Carbon::parse($state)
+                            ->locale('id')
+                            ->translatedFormat('d F Y')
+                    )
+                    ->toggleable(isToggledHiddenByDefault: true)
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('categories')

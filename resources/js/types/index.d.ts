@@ -8,7 +8,7 @@ export interface User {
 export interface Portofolio {
     id: number;
     name: string;
-    client: string;
+    client: Client;
     description: string;
     thumbnail: string;
     screenshots: string[];

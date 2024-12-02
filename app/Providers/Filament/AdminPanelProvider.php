@@ -5,6 +5,7 @@ namespace App\Providers\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
@@ -40,17 +41,8 @@ class AdminPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-            ->navigationItems([
-                NavigationItem::make('Clients'),
-                NavigationItem::make('Portofolios'),
-                NavigationItem::make('Categories'),
-                NavigationItem::make('Warriors'),
-                NavigationItem::make('Testimonials'),
-                NavigationItem::make('Pesanans'),
-                NavigationItem::make('Users'),
-            ])
             ->widgets([
-                Widgets\AccountWidget::class,
+                Widgets\StatsOverviewWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

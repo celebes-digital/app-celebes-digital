@@ -3,9 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\WarriorsResource\Pages;
-use App\Filament\Resources\WarriorsResource\RelationManagers;
 use App\Models\Warriors;
-use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -17,14 +15,30 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class WarriorsResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Admin';
+
     protected static ?string $model = Warriors::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
+
+    public static function canAccess(): bool
+    {
+        return Auth::user()->role->name === 'admin';
+    }
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return Auth::user()->role->name === 'admin';
+    }
+
+    public static function getNavigationVisibility(): bool
+    {
+        return Auth::check() && Auth::user()->role->name === 'admin';
+    }
 
     public static function form(Form $form): Form
     {

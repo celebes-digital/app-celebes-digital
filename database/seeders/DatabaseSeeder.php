@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Role;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -18,16 +19,43 @@ class DatabaseSeeder extends Seeder
 
         Role::insert([
             [
-                'name' => 'superadmin'
+                'name' => 'admin',
+                'created_at' => now()
             ],
             [
-                'name' => 'marketing'
+                'name' => 'marketing',
+                'created_at' => now()
             ],
             [
-                'name' => 'sales'
+                'name' => 'sales',
+                'created_at' => now()
             ],
             [
-                'name' => 'production'
+                'name' => 'production',
+                'created_at' => now()
+            ]
+        ]);
+
+        Category::insert([
+            [
+                'name' => 'App Development',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'name' => 'UI/UX',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Website Development',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'name' => 'Software As A Service',
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ]);
 

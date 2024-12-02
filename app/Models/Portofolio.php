@@ -13,6 +13,11 @@ class Portofolio extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
     protected function casts(): array
     {
         return [

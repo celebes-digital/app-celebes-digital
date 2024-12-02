@@ -3,9 +3,8 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PesananResource\Pages;
-use App\Filament\Resources\PesananResource\RelationManagers;
 use App\Models\Pesanan;
-use Filament\Forms;
+use Carbon\Carbon;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
@@ -14,14 +13,37 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class PesananResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Sales';
+
     protected static ?string $model = Pesanan::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationLabel = 'Pesanan';
+
+    protected static ?string $navigationIcon = 'heroicon-o-inbox';
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return Auth::user()->role->name === 'admin' || Auth::user()->role->name === 'sales';
+    }
+
+    public static function getNavigationVisibility(): bool
+    {
+        return Auth::user()->role->name === 'admin' || Auth::user()->role->name === 'sales';
+    }
+
+    public static function getLabel(): string
+    {
+        return 'Pesanan';
+    }
+
+    public static function getPluralLabel(): string
+    {
+        return 'Pesanan';
+    }
 
     public static function form(Form $form): Form
     {
@@ -31,13 +53,7 @@ class PesananResource extends Resource
                     TextInput::make('name')
                         ->required()
                         ->maxLength(255),
-                    TextInput::make('no_telepon')
-                        ->required()
-                        ->maxLength(255),
-                    TextInput::make('email')
-                        ->required()
-                        ->maxLength(255),
-                    RichEditor::make('ide')
+                    RichEditor::make('note')
                         ->required(),
                 ])
             ]);
@@ -48,14 +64,30 @@ class PesananResource extends Resource
         return $table
             ->columns([
                 TextColumn::make("name")->searchable(),
-                TextColumn::make("no_telepon"),
-                TextColumn::make("email")->searchable(),
-            ])
-            ->filters([
-                //
+                TextColumn::make("note")->html(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->sortable()
+                    ->formatStateUsing(
+                        fn(string $state) =>
+                        Carbon::parse($state)
+                            ->locale('id')
+                            ->translatedFormat('d F Y')
+                    )
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->sortable()
+                    ->formatStateUsing(
+                        fn(string $state) =>
+                        Carbon::parse($state)
+                            ->locale('id')
+                            ->translatedFormat('d F Y')
+                    )
+                    ->toggleable(isToggledHiddenByDefault: true)
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -75,6 +107,8 @@ class PesananResource extends Resource
     {
         return [
             'index' => Pages\ListPesanans::route('/'),
+            'create' => Pages\CreatePesanan::route('/create'),
+            'edit' => Pages\EditPesanan::route('/{record}/edit'),
         ];
     }
 }

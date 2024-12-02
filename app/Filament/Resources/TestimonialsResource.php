@@ -3,9 +3,8 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TestimonialsResource\Pages;
-use App\Filament\Resources\TestimonialsResource\RelationManagers;
 use App\Models\Testimonials;
-use Filament\Forms;
+use Carbon\Carbon;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
@@ -16,14 +15,30 @@ use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class TestimonialsResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Admin';
+
     protected static ?string $model = Testimonials::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-bottom-center-text';
+
+    public static function canAccess(): bool
+    {
+        return Auth::user()->role->name === 'admin';
+    }
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return Auth::user()->role->name === 'admin';
+    }
+
+    public static function getNavigationVisibility(): bool
+    {
+        return Auth::check() && Auth::user()->role->name === 'admin';
+    }
 
     public static function form(Form $form): Form
     {
@@ -72,6 +87,24 @@ class TestimonialsResource extends Resource
                 TextColumn::make('fullname')->searchable()->sortable(),
                 TextColumn::make('profession'),
                 TextColumn::make('company')->searchable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->sortable()
+                    ->formatStateUsing(
+                        fn(string $state) =>
+                        Carbon::parse($state)
+                            ->locale('id')
+                            ->translatedFormat('d F Y')
+                    )
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->sortable()
+                    ->formatStateUsing(
+                        fn(string $state) =>
+                        Carbon::parse($state)
+                            ->locale('id')
+                            ->translatedFormat('d F Y')
+                    )
+                    ->toggleable(isToggledHiddenByDefault: true)
             ])
             ->filters([
                 //

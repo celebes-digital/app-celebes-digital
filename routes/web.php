@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use App\Models\Client;
+use App\Models\ContactMessage;
 use App\Models\Pesanan;
 use App\Models\Portofolio;
 use App\Models\Warriors;
@@ -35,7 +36,7 @@ Route::get('/case', function () {
 });
 
 Route::get('/case/{portofolio}/detail', function (Portofolio $portofolio) {
-    $portofolio->load('categories');
+    $portofolio->load(['categories', 'client']);
     return Inertia::render('CaseDetail', [
         'portofolio' => $portofolio
     ]);
@@ -53,7 +54,7 @@ Route::post('/contact', function (Request $request) {
         'ide' => 'required|min:2'
     ]);
 
-    Pesanan::create($v);
+    ContactMessage::create($v);
 
     return redirect()->intended(route('contact'));
 });

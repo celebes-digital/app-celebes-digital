@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('portofolios', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('client_id');
             $table->string('thumbnail');
             $table->json('screenshots');
             $table->string('name');
-            $table->string('client');
             $table->text('description');
             $table->timestamps();
         });

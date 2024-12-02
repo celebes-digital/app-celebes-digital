@@ -29,7 +29,7 @@ export default function CaseDetail({ portofolio }: { portofolio: Portofolio }) {
                         ></div>
                         <div className="flex flex-col gap-2 md:flex-row md:justify-between">
                             <span className="order-2 text-sm font-bold text-black/50 md:order-1">
-                                Client: {portofolio.client}
+                                Client: {portofolio.client.name}
                             </span>
                             <span className="order-1 text-sm font-bold text-black/50 md:order-2">
                                 Service: {categories}
