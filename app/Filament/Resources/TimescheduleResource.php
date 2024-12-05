@@ -13,6 +13,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class TimescheduleResource extends Resource
 {
@@ -26,38 +27,48 @@ class TimescheduleResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('pic_id')
-                    ->relationship('pic', 'name', fn($query) => $query->whereHas('role', function ($q) {
-                        $q->where('name', 'production');
-                    }))
-                    ->preload()
-                    ->required()
-                    ->columnSpan(2),
-                Forms\Components\RichEditor::make('item')
-                    ->label('Item Kerja')
-                    ->required()
-                    ->maxLength(255)
-                    ->columnSpan(2),
-                Forms\Components\DatePicker::make('tgl_mulai')
-                    ->label('Tanggal Mulai')
-                    ->native(false)
-                    ->default(now())
-                    ->displayFormat('d/m/Y')
-                    ->required()
-                    ->reactive()
-                    ->afterStateUpdated(function ($state, callable $set, callable $get) {
-                        if ($get('tgl_selesai') < $state) {
-                            $set('tgl_selesai', $state);
-                        }
-                    }),
-                Forms\Components\DatePicker::make('tgl_selesai')
-                    ->label('Tanggal Selesai')
-                    ->native(false)
-                    ->displayFormat('d/m/Y')
-                    ->default(now())
-                    ->required()
-                    ->reactive()
-                    ->minDate(fn(callable $get) => $get('tgl_mulai')),
+                Forms\Components\Section::make([
+                    Forms\Components\Select::make('item_kerja_id')
+                        ->label('Pekerjaan')
+                        ->relationship('itemKerja', 'name')
+                        ->preload()
+                        ->required(),
+
+                    Forms\Components\Select::make('pic_id')
+                        ->relationship('pic', 'name', fn($query) => $query->whereHas('role', function ($q) {
+                            $q->where('name', 'production')
+                                ->orWhere('name', 'cto');
+                        }))
+                        ->multiple()
+                        ->preload()
+                        ->required(),
+
+                    Forms\Components\DatePicker::make('tgl_mulai')
+                        ->label('Tanggal Mulai')
+                        ->native(false)
+                        ->default(now())
+                        ->displayFormat('d/m/Y')
+                        ->required()
+                        ->reactive()
+                        ->minDate(Carbon::today())
+                        ->afterStateUpdated(function ($state, callable $set, callable $get) {
+                            if ($get('tgl_selesai') < $state) {
+                                $set('tgl_selesai', $state);
+                            }
+                        }),
+                    Forms\Components\DatePicker::make('tgl_selesai')
+                        ->label('Tanggal Selesai')
+                        ->native(false)
+                        ->displayFormat('d/m/Y')
+                        ->default(now())
+                        ->required()
+                        ->reactive()
+                        ->minDate(fn(callable $get) => $get('tgl_mulai')),
+
+                    Forms\Components\RichEditor::make('description')
+                        ->required()
+                        ->columnSpan(2),
+                ])->columns(2)
             ]);
     }
 
@@ -66,10 +77,12 @@ class TimescheduleResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('pic.name')
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('item')
-                    ->html()
                     ->searchable(),
+
+                Tables\Columns\TextColumn::make('itemKerja.name')
+                    ->label('Pekerjaan')
+                    ->badge(),
+
                 Tables\Columns\TextColumn::make('tgl_mulai')
                     ->sortable()
                     ->formatStateUsing(
@@ -78,6 +91,7 @@ class TimescheduleResource extends Resource
                             ->locale('id')
                             ->translatedFormat('d F Y')
                     ),
+
                 Tables\Columns\TextColumn::make('tgl_selesai')
                     ->sortable()
                     ->formatStateUsing(
@@ -86,6 +100,19 @@ class TimescheduleResource extends Resource
                             ->locale('id')
                             ->translatedFormat('d F Y')
                     ),
+
+                Tables\Columns\ToggleColumn::make('is_finished')
+                    ->label('Selesai?')
+                    ->onColor('success')
+                    ->visible(fn() => Auth::user()->role->name === 'cto' || Auth::user()->role->name === 'production'),
+
+                Tables\Columns\TextColumn::make('status')
+                    ->label('Status')
+                    ->visible(fn() => Auth::user()->role->name !== 'cto' && Auth::user()->role->name !== 'production')
+                    ->formatStateUsing(fn($state) => $state ? 'Selesai' : 'On Progress')
+                    ->color(fn($state) => $state ? 'success' : 'warning')
+                    ->sortable(),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->sortable()
                     ->formatStateUsing(
@@ -94,7 +121,9 @@ class TimescheduleResource extends Resource
                             ->locale('id')
                             ->translatedFormat('d F Y')
                     )
+
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('updated_at')
                     ->sortable()
                     ->formatStateUsing(
@@ -106,7 +135,18 @@ class TimescheduleResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true)
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('pic')
+                    ->relationship('pic', 'name', fn($query) => $query->whereHas('role', function ($q) {
+                        $q->where('name', 'production')
+                            ->orWhere('name', 'cto');
+                    }))
+                    ->multiple()
+                    ->preload(),
+
+                Tables\Filters\SelectFilter::make('Item Kerja')
+                    ->relationship('itemKerja', 'name')
+                    ->multiple()
+                    ->preload(),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

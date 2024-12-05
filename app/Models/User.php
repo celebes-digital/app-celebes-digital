@@ -56,6 +56,11 @@ class User extends Authenticatable
 
     public function tugas()
     {
-        return $this->hasMany(Timeschedule::class, 'pic_id');
+        return $this->belongsToMany(Timeschedule::class);
+    }
+
+    public function pesanan()
+    {
+        return $this->hasMany(Pesanan::class);
     }
 }

@@ -13,9 +13,19 @@ class Portofolio extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
     public function client()
     {
         return $this->belongsTo(Client::class);
+    }
+
+    public function contactMessage()
+    {
+        return $this->hasMany(ContactMessage::class);
     }
 
     protected function casts(): array
@@ -23,5 +33,10 @@ class Portofolio extends Model
         return [
             'screenshots' => 'array',
         ];
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
     }
 }

@@ -49,20 +49,15 @@ class TestimonialsResource extends Resource
                         ->label('Avatar Image')
                         ->image()
                         ->avatar()
-                        ->directory('testimonial-image')
+                        ->optimize('webp')
+                        ->directory('testimonial')
                         ->previewable(true)
                         ->columnSpan(2)
                         ->required(),
 
                     TextInput::make('fullname')
                         ->required()
-                        ->columnSpan(2)
                         ->placeholder('Nama lengkap client')
-                        ->maxLength(255),
-
-                    TextInput::make('profession')
-                        ->placeholder('Profesi client')
-                        ->required()
                         ->maxLength(255),
 
                     TextInput::make('company')
@@ -85,7 +80,6 @@ class TestimonialsResource extends Resource
             ->columns([
                 ImageColumn::make('image')->height('50px')->rounded('full'),
                 TextColumn::make('fullname')->searchable()->sortable(),
-                TextColumn::make('profession'),
                 TextColumn::make('company')->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->sortable()

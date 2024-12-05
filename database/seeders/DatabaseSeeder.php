@@ -20,44 +20,53 @@ class DatabaseSeeder extends Seeder
         Role::insert([
             [
                 'name' => 'admin',
-                'created_at' => now()
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'name' => 'marketing',
-                'created_at' => now()
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'name' => 'sales',
-                'created_at' => now()
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'name' => 'production',
-                'created_at' => now()
-            ]
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'name' => 'cto',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
         ]);
 
-        Category::insert([
-            [
-                'name' => 'App Development',
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'name' => 'UI/UX',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Website Development',
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'name' => 'Software As A Service',
-                'created_at' => now(),
-                'updated_at' => now()
-            ]
-        ]);
+        // Category::insert([
+        //     [
+        //         'name' => 'App Development',
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ],
+        //     [
+        //         'name' => 'UI/UX',
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Website Development',
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ],
+        //     [
+        //         'name' => 'Software As A Service',
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ]
+        // ]);
 
         $users = [
             [
@@ -80,6 +89,14 @@ class DatabaseSeeder extends Seeder
                 'role_id' => '3',
                 'name' => 'sales',
                 'email' => 'sales@gmail.com',
+                'password' => '123123',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'role_id' => '5',
+                'name' => 'CTO',
+                'email' => 'cto@gmail.com',
                 'password' => '123123',
                 'created_at' => now(),
                 'updated_at' => now()

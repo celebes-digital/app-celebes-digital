@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\KontenResource\Pages;
 use App\Models\Konten;
+use App\Models\SocialMedia;
 use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
@@ -20,11 +21,6 @@ class KontenResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-folder';
 
-    public static function getLabel(): string
-    {
-        return 'Konten';
-    }
-
     public static function getPluralLabel(): string
     {
         return 'Konten';
@@ -36,13 +32,41 @@ class KontenResource extends Resource
             ->schema([
                 Section::make([
                     Forms\Components\FileUpload::make('thumbnail')
+                        ->image()
+                        ->directory('konten/thumbnails')
                         ->required()
-                        ->columnSpan(2),
+                        ->optimize('webp')
+                        ->columnSpanFull(),
+
                     Forms\Components\TextInput::make('link')
                         ->required()
-                        ->columnSpan(2)
-                        ->maxLength(255),
-                    Forms\Components\Textarea::make('description')
+                        ->maxLength(255)
+                        ->reactive()
+                        ->afterStateUpdated(function ($state, callable $set, callable $get) {
+                            $socialMedias = SocialMedia::all();
+
+                            $normalizedState = strtolower($state);
+
+                            $parsedUrl = parse_url($normalizedState, PHP_URL_HOST);
+
+                            if ($parsedUrl) {
+                                foreach ($socialMedias as $socialMedia) {
+                                    $pattern = strtolower($socialMedia->name) . '.com';
+
+                                    if (stripos($parsedUrl, $pattern) !== false) {
+                                        $set('social_media_id', $socialMedia->id);
+                                        return;
+                                    }
+                                }
+                            }
+                        }),
+
+                    Forms\Components\Select::make('social_media_id')
+                        ->relationship('socialMedia', 'name')
+                        ->preload()
+                        ->required(),
+
+                    Forms\Components\RichEditor::make('description')
                         ->required()
                         ->columnSpanFull(),
                 ])->columns(2)
@@ -56,9 +80,9 @@ class KontenResource extends Resource
                 Tables\Columns\ImageColumn::make('thumbnail')
                     ->height('100px'),
                 Tables\Columns\TextColumn::make('link')
-                    ->url(fn($record) => $record->url, true)
-                    ->openUrlInNewTab()
                     ->searchable(),
+                Tables\Columns\TextColumn::make('socialMedia.name')
+                    ->badge(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->sortable()
                     ->formatStateUsing(
@@ -77,6 +101,12 @@ class KontenResource extends Resource
                             ->translatedFormat('d F Y')
                     )
                     ->toggleable(isToggledHiddenByDefault: true)
+            ])
+            ->filters([
+                Tables\Filters\SelectFilter::make('socialMedia')
+                    ->relationship('socialMedia', 'name')
+                    ->multiple()
+                    ->preload()
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

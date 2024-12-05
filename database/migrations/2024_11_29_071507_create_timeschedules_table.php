@@ -13,10 +13,18 @@ return new class extends Migration
     {
         Schema::create('timeschedules', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pic_id');
-            $table->string('item');
+            $table->foreignId('item_kerja_id');
+            $table->text('description');
+            $table->boolean('is_finished')->default(false);
             $table->date('tgl_mulai');
             $table->date('tgl_selesai');
+            $table->timestamps();
+        });
+
+        Schema::create('timeschedule_user', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('timeschedule_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

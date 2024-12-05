@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('portofolios', function (Blueprint $table) {
             $table->id();
             $table->foreignId('client_id');
+            $table->foreignId('product_id');
+            $table->string('slug');
             $table->string('thumbnail');
             $table->json('screenshots');
             $table->string('name');

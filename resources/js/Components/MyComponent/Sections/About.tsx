@@ -76,7 +76,7 @@ export default function About({ clients }: { clients: Client[] }) {
                             </svg>
                         </h2>
                         <div className="space-y-5">
-                            <p className="text-sm leading-[150%] tracking-[1%] md:text-base">
+                            <p className="text-sm leading-[150%] tracking-[1%] md:text-base text-justify">
                                 Kami percaya bahwa setiap bisnis adalah unik,
                                 begitu juga dengan kebutuhan teknologinya. Oleh
                                 karena itu, kami di PT Celebes Solusi Digital

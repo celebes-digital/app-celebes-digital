@@ -47,6 +47,7 @@ class WarriorsResource extends Resource
                 Section::make([
                     FileUpload::make('image')
                         ->label('Warrior Image')
+                        ->optimize('webp')
                         ->directory('warrior-image')
                         ->previewable(true)
                         ->columnSpan(2)

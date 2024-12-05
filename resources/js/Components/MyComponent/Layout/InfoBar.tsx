@@ -1,5 +1,5 @@
 import { Link } from "@inertiajs/react";
-import { Instagram } from "lucide-react";
+import { Github, Instagram } from "lucide-react";
 
 export default function InfobBar() {
     return (
@@ -38,7 +38,7 @@ export default function InfobBar() {
                 </ul>
                 <ul className="flex items-center gap-4">
                     <li>
-                        <Link href="/" className="group">
+                        <Link href="https://www.facebook.com/celebesdigital/" className="group">
                             <img
                                 src="/assets/image/icons/meta.svg"
                                 width={18}
@@ -48,7 +48,7 @@ export default function InfobBar() {
                         </Link>
                     </li>
                     <li>
-                        <Link href="/" className="group">
+                        <Link href="https://www.tiktok.com/@celebesdigital" className="group">
                             <img
                                 src="/assets/image/icons/tiktok.svg"
                                 width={16}
@@ -58,7 +58,7 @@ export default function InfobBar() {
                         </Link>
                     </li>
                     <li>
-                        <Link href="/" className="group">
+                        <Link href="https://www.youtube.com/@celebesdigital" className="group">
                             <img
                                 src="/assets/image/icons/youtube.svg"
                                 width={18}
@@ -68,18 +68,23 @@ export default function InfobBar() {
                         </Link>
                     </li>
                     <li>
-                        <Link href="/" className="group">
-                            <Instagram className="duration-20 h-4 w-4 transition group-hover:-translate-y-1" />
+                        <Link href="https://www.instagram.com/celebesdigital_id/" className="group">
+                            <Instagram className="duration-20 h-[18px] w-[18px] transition group-hover:-translate-y-1" />
                         </Link>
                     </li>
                     <li>
-                        <Link href="/" className="group">
+                        <Link href="https://www.linkedin.com/in/celebes-digital-2454b287/?originalSubdomain=id" className="group">
                             <img
                                 src="/assets/image/icons/linkedin.svg"
                                 width={17}
                                 className="transition duration-200 group-hover:-translate-y-1"
                                 alt="linkedin"
                             />
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="https://www.linkedin.com/in/celebes-digital-2454b287/?originalSubdomain=id" className="group">
+                            <Github className="duration-20 h-[19px] w-[19px] transition group-hover:-translate-y-1" />
                         </Link>
                     </li>
                 </ul>

@@ -22,6 +22,10 @@ const links = [
         href: "/#case",
     },
     {
+        label: "Layanan",
+        href: "/#layanan",
+    },
+    {
         label: "Warriors",
         href: "/#warriors",
     },

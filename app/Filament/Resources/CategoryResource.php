@@ -9,7 +9,9 @@ use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CategoryResource extends Resource
 {
@@ -19,16 +21,6 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-tag';
 
-    public static function shouldRegisterNavigation(): bool
-    {
-        return Auth::user()->role->name === 'admin' || Auth::user()->role->name === 'production';
-    }
-
-    public static function getNavigationVisibility(): bool
-    {
-        return Auth::check() && (Auth::user()->role->name === 'admin' || Auth::user()->role->name === 'production');
-    }
-
     public static function form(Forms\Form $form): Forms\Form
     {
         return $form
@@ -37,7 +29,28 @@ class CategoryResource extends Resource
                     Forms\Components\TextInput::make('name')
                         ->required()
                         ->unique(ignoreRecord: true)
-                        ->maxLength(255),
+                        ->maxLength(255)
+                        ->afterStateUpdated(function (string $state, callable $set, ?Model $record) {
+                            $slug = Str::slug($state);
+
+                            $model = static::getModel();
+
+                            $count = 1;
+                            $originalSlug = $slug;
+
+                            while ($model::query()
+                                ->where('slug', $slug)
+                                ->where('id', '!=', $record?->id)
+                                ->exists()
+                            ) {
+                                $slug = $originalSlug . '-' . $count++;
+                            }
+
+                            $set('slug', $slug);
+                        }),
+
+                    Forms\Components\Hidden::make('slug')
+                        ->unique(ignoreRecord: true),
                 ])
             ]);
     }

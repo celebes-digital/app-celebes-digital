@@ -24,21 +24,6 @@ class ClientResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-building-office';
 
-    public static function canAccess(): bool
-    {
-        return Auth::user()->role->name === 'admin' || Auth::user()->role->name === 'sales';
-    }
-
-    public static function shouldRegisterNavigation(): bool
-    {
-        return Auth::user()->role->name === 'admin' || Auth::user()->role->name === 'sales';
-    }
-
-    public static function getNavigationVisibility(): bool
-    {
-        return Auth::check() && (Auth::user()->role->name === 'admin' || Auth::user()->role->name === 'sales');
-    }
-
     public static function form(Form $form): Form
     {
         return $form
@@ -46,6 +31,7 @@ class ClientResource extends Resource
                 Section::make([
                     FileUpload::make('image')
                         ->label('Company Image')
+                        ->optimize('webp')
                         ->directory('company-image')
                         ->previewable(true)
                         ->columnSpan(2)

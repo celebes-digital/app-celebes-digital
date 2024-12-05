@@ -3,22 +3,24 @@ import StudiKasusCard, {
     CategoryButton,
 } from "@/Components/MyComponent/StudiKasusCard";
 import GuestLayout from "@/Layouts/GuestLayout";
-import { Category, Portofolio } from "@/types";
+import { Category, Portofolio, Product } from "@/types";
 import { Filter } from "lucide-react";
 
 export default function CaseStudy({
     portofolios,
     categories,
+    product
 }: {
     portofolios: Portofolio[];
     categories: Category[];
+    product?: Product;
 }) {
     console.log(portofolios);
     return (
         <GuestLayout>
             <Hero
-                title="Studi Kasus"
-                subtitle="Kasus Nyata, Dampak Nyata: Solusi yang Mengubah Industri"
+                title={product ? product.name : "Studi Kasus"}
+                subtitle={product ? product.description : "Kasus Nyata, Dampak Nyata: Solusi yang Mengubah Industri"}
             />
 
             <div className="container space-y-5 px-5 py-20">
@@ -35,7 +37,7 @@ export default function CaseStudy({
                             <li className="mb-3" key={i}>
                                 <CategoryButton
                                     name={category.name}
-                                    id={category.id}
+                                    slug={category.slug}
                                 />
                             </li>
                         ))}

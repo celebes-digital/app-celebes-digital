@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('chanels', function (Blueprint $table) {
             $table->id();
-            $table->enum('tipe', ['instagram', 'tiktok', 'linkedin', 'youtube']);
-            $table->text('status');
+            $table->string('social_media');
+            $table->string('name');
+            $table->string('link');
+            $table->text('description');
             $table->timestamps();
         });
     }

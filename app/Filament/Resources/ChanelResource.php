@@ -25,16 +25,18 @@ class ChanelResource extends Resource
         return $form
             ->schema([
                 Section::make([
-                    Forms\Components\Select::make('tipe')
-                        ->label('Sosial Media')
-                        ->options([
-                            'instagram' => 'Instagram',
-                            'tiktok' => 'Tiktok',
-                            'linkedin' => 'LinkedIn',
-                            'youtube' => 'Youtube',
-                        ])
-                        ->columnSpanFull(),
-                    Forms\Components\RichEditor::make('status')
+                    Forms\Components\TextInput::make('social_media')
+                        ->required()
+                        ->maxLength(255),
+                    Forms\Components\TextInput::make('name')
+                        ->label('Nama akun')
+                        ->required()
+                        ->maxLength(255),
+                    Forms\Components\TextInput::make('link')
+                        ->required()
+                        ->maxLength(255)
+                        ->columnSpan(2),
+                    Forms\Components\RichEditor::make('description')
                         ->required()
                         ->columnSpanFull(),
                 ])->columns(2)
@@ -45,12 +47,10 @@ class ChanelResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('tipe')
-                    ->label('Sosial Media')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('status')
-                    ->searchable()
-                    ->html(),
+                Tables\Columns\TextColumn::make('social_media')
+                    ->badge(),
+                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('link'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->sortable()
                     ->formatStateUsing(

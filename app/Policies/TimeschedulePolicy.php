@@ -13,7 +13,7 @@ class TimeschedulePolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->role->name === 'admin' || $user->role->name === 'production';
+        return $user->role->name === 'admin' || $user->role->name === 'production' || $user->role->name === 'cto';
     }
 
     /**
@@ -21,7 +21,7 @@ class TimeschedulePolicy
      */
     public function view(User $user, Timeschedule $timeschedule): bool
     {
-        return $user->role->name === 'admin' || $user->role->name === 'production';
+        return $user->role->name === 'admin' || $user->role->name === 'production' || $user->role->name === 'cto';
     }
 
     /**
@@ -29,7 +29,7 @@ class TimeschedulePolicy
      */
     public function create(User $user): bool
     {
-        return $user->role->name === 'production';
+        return $user->role->name === 'production' || $user->role->name === 'cto';
     }
 
     /**
@@ -37,7 +37,7 @@ class TimeschedulePolicy
      */
     public function update(User $user, Timeschedule $timeschedule): bool
     {
-        return $user->role->name === 'production';
+        return $user->role->name === 'production' || $user->role->name === 'cto';
     }
 
     /**
@@ -45,12 +45,12 @@ class TimeschedulePolicy
      */
     public function delete(User $user, Timeschedule $timeschedule): bool
     {
-        return $user->role->name === 'production';
+        return $user->role->name === 'production' || $user->role->name === 'cto';
     }
 
     public function deleteAny(User $user): bool
     {
-        return $user->role->name === 'production';
+        return $user->role->name === 'production' || $user->role->name === 'cto';
     }
 
     /**
@@ -58,7 +58,7 @@ class TimeschedulePolicy
      */
     public function restore(User $user, Timeschedule $timeschedule): bool
     {
-        return $user->role->name === 'production';
+        return $user->role->name === 'production' || $user->role->name === 'cto';
     }
 
     /**
@@ -66,6 +66,6 @@ class TimeschedulePolicy
      */
     public function forceDelete(User $user, Timeschedule $timeschedule): bool
     {
-        return $user->role->name === 'production';
+        return $user->role->name === 'production' || $user->role->name === 'cto';
     }
 }

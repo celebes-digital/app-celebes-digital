@@ -8,8 +8,22 @@ class Timeschedule extends Model
 {
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'is_finished' => 'boolean',
+    ];
+
     public function pic()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class);
+    }
+
+    public function itemKerja()
+    {
+        return $this->belongsTo(ItemKerja::class);
+    }
+
+    public function getStatusAttribute()
+    {
+        return $this->is_finished;
     }
 }

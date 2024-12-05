@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('pesanans', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('user_id');
+            $table->string('client_name');
+            $table->string('app_name');
             $table->text('note');
             $table->timestamps();
         });

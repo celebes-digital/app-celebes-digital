@@ -13,7 +13,7 @@ class PesananPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->role->name === 'admin' || $user->role->name === 'sales';
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class PesananPolicy
      */
     public function view(User $user, Pesanan $pesanan): bool
     {
-        return $user->role->name === 'admin' || $user->role->name === 'sales';
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class PesananPolicy
      */
     public function create(User $user): bool
     {
-        return $user->role->name === 'sales';
+        return $user->role->name === 'sales' || $user->role->name === 'admin';
     }
 
     /**
@@ -37,7 +37,7 @@ class PesananPolicy
      */
     public function update(User $user, Pesanan $pesanan): bool
     {
-        return $user->role->name === 'sales';
+        return $user->role->name === 'sales' || $user->role->name === 'admin';
     }
 
     /**
@@ -45,12 +45,12 @@ class PesananPolicy
      */
     public function delete(User $user, Pesanan $pesanan): bool
     {
-        return $user->role->name === 'sales';
+        return $user->role->name === 'sales' || $user->role->name === 'admin';
     }
 
     public function deleteAny(User $user): bool
     {
-        return $user->role->name === 'sales';
+        return $user->role->name === 'sales' || $user->role->name === 'admin';
     }
 
     /**
@@ -58,7 +58,7 @@ class PesananPolicy
      */
     public function restore(User $user, Pesanan $pesanan): bool
     {
-        return $user->role->name === 'sales';
+        return $user->role->name === 'sales' || $user->role->name === 'admin';
     }
 
     /**
@@ -66,6 +66,6 @@ class PesananPolicy
      */
     public function forceDelete(User $user, Pesanan $pesanan): bool
     {
-        return $user->role->name === 'sales';
+        return $user->role->name === 'sales' || $user->role->name === 'admin';
     }
 }

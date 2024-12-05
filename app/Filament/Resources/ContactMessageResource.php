@@ -26,16 +26,6 @@ class ContactMessageResource extends Resource
         return Auth::user()->role->name === 'admin';
     }
 
-    public static function shouldRegisterNavigation(): bool
-    {
-        return Auth::user()->role->name === 'admin';
-    }
-
-    public static function getNavigationVisibility(): bool
-    {
-        return Auth::check() && Auth::user()->role->name === 'admin';
-    }
-
     public static function form(Form $form): Form
     {
         return $form
@@ -43,7 +33,12 @@ class ContactMessageResource extends Resource
                 Section::make([
                     Forms\Components\TextInput::make('name')
                         ->required()
-                        ->maxLength(255),
+                        ->maxLength(255)
+                        ->columnSpan(2),
+                    Forms\Components\Select::make('product_portofolio')
+                        ->relationship('portofolio', 'name')
+                        ->preload()
+                        ->required(),
                     Forms\Components\TextInput::make('no_telepon')
                         ->tel()
                         ->required()
@@ -66,6 +61,11 @@ class ContactMessageResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('portofolio.name')
+                    ->label('Nama portofolio')
+                    ->state(fn($record) => $record->portofolio?->name ?? '-')
+                    ->badge()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('no_telepon')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
@@ -81,7 +81,10 @@ class ContactMessageResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('Portofolio')
+                    ->relationship('portofolio', 'name')
+                    ->multiple()
+                    ->preload(),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

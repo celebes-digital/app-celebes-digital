@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('kontens', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('social_media_id');
             $table->string('thumbnail');
             $table->string('link');
             $table->text('description');

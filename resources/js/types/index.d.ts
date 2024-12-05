@@ -7,7 +7,9 @@ export interface User {
 
 export interface Portofolio {
     id: number;
+    product_id: number;
     name: string;
+    slug: string;
     client: Client;
     description: string;
     thumbnail: string;
@@ -17,11 +19,26 @@ export interface Portofolio {
     updated_at: string;
 }
 
+export interface KontenProps {
+    id: number;
+    link: string;
+    thumbnail: string;
+}
+
 export interface Category {
     id: number;
+    slug: string;
     name: string;
     created_at: string;
     updated_at: string;
+}
+
+export interface Product {
+    id: number;
+    slug: string;
+    name: string;
+    image: string;
+    description: string;
 }
 
 export interface Testimoni {

@@ -10,24 +10,21 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PortofolioResource extends Resource
 {
-    protected static ?string $navigationGroup = 'Production';
+    protected static ?string $navigationGroup = 'Admin';
 
     protected static ?string $model = Portofolio::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static function shouldRegisterNavigation(): bool
+    public static function canAccess(): bool
     {
-        return Auth::user()->role->name === 'admin' || Auth::user()->role->name === 'production';
-    }
-
-    public static function getNavigationVisibility(): bool
-    {
-        return Auth::user()->role->name === 'admin' || Auth::user()->role->name === 'production';
+        return Auth::user()->role->name === 'admin';
     }
 
     public static function form(Forms\Form $form): Forms\Form
@@ -39,23 +36,49 @@ class PortofolioResource extends Resource
                         ->columnSpan(2)
                         ->image()
                         ->directory('portofolios/thumbnails')
+                        ->optimize('webp')
                         ->required(),
 
                     Forms\Components\TextInput::make('name')
                         ->required()
-                        ->maxLength(255),
+                        ->maxLength(255)
+                        ->afterStateUpdated(function (string $state, callable $set, ?Model $record) {
+                            $slug = Str::slug($state);
 
-                    Forms\Components\Select::make('categories')
-                        ->relationship('categories', 'name')
-                        ->multiple()
+                            $model = static::getModel();
+
+                            $count = 1;
+                            $originalSlug = $slug;
+
+                            while ($model::query()
+                                ->where('slug', $slug)
+                                ->where('id', '!=', $record?->id)
+                                ->exists()
+                            ) {
+                                $slug = $originalSlug . '-' . $count++;
+                            }
+
+                            $set('slug', $slug);
+                        }),
+
+                    Forms\Components\Hidden::make('slug')
+                        ->unique(ignoreRecord: true),
+
+                    Forms\Components\Select::make('product_id')
+                        ->relationship('product', 'name')
                         ->preload()
                         ->required(),
 
                     Forms\Components\Select::make('client_id')
                         ->relationship('client', 'name')
                         ->preload()
-                        ->required()
-                        ->columnSpan(2),
+                        ->required(),
+
+                    Forms\Components\Select::make('categories')
+                        ->relationship('categories', 'name')
+                        ->multiple()
+                        ->preload()
+                        ->required(),
 
                     FileUpload::make('screenshots')
                         ->columnSpan(2)
@@ -106,6 +129,10 @@ class PortofolioResource extends Resource
             ->filters([
                 Tables\Filters\SelectFilter::make('categories')
                     ->relationship('categories', 'name')
+                    ->multiple()
+                    ->preload(),
+                Tables\Filters\SelectFilter::make('product')
+                    ->relationship('product', 'name')
                     ->multiple()
                     ->preload()
             ])

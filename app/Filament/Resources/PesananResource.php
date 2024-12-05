@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PesananResource\Pages;
 use App\Models\Pesanan;
 use Carbon\Carbon;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
@@ -25,16 +26,6 @@ class PesananResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-inbox';
 
-    public static function shouldRegisterNavigation(): bool
-    {
-        return Auth::user()->role->name === 'admin' || Auth::user()->role->name === 'sales';
-    }
-
-    public static function getNavigationVisibility(): bool
-    {
-        return Auth::user()->role->name === 'admin' || Auth::user()->role->name === 'sales';
-    }
-
     public static function getLabel(): string
     {
         return 'Pesanan';
@@ -50,11 +41,16 @@ class PesananResource extends Resource
         return $form
             ->schema([
                 Section::make([
-                    TextInput::make('name')
+                    TextInput::make('app_name')
+                        ->required()
+                        ->maxLength(255),
+                    TextInput::make('client_name')
                         ->required()
                         ->maxLength(255),
                     RichEditor::make('note')
                         ->required(),
+                    Hidden::make('user_id')
+                        ->default(Auth::id()),
                 ])
             ]);
     }
@@ -63,8 +59,9 @@ class PesananResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make("name")->searchable(),
-                TextColumn::make("note")->html(),
+                TextColumn::make("client_name")->searchable(),
+                TextColumn::make("app_name")->searchable(),
+                TextColumn::make("user.name")->label('Sales name')->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->sortable()
                     ->formatStateUsing(

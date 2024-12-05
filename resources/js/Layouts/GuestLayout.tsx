@@ -5,14 +5,14 @@ import { PropsWithChildren } from "react";
 
 export default function GuestLayout({ children }: PropsWithChildren) {
     return (
-        <div className="min-h-screen bg-[#F8F8F8]">
+        <div className="min-h-screen bg-[#F8F8F8] selection:bg-primary selection:text-white">
             <InfobBar />
             <Navbar />
 
-            <main>{children}</main>
+            <main className="min-h-screen">{children}</main>
 
-            <a href="https://wa.me" className="bg-white rounded-full overflow-hidden fixed bottom-2 right-2 z-20">
-                <img src="/assets/image/icons/whatsapp.png" alt="whatsapp" width={60} />
+            <a href="https://wa.me/6282292877750" className="bg-white rounded-full overflow-hidden fixed bottom-2 right-2 z-20">
+                <img src="/assets/image/icons/whatsapp.png" alt="whatsapp" width={50} />
             </a>
 
             <Footer />

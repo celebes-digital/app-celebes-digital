@@ -29,7 +29,7 @@ class KontenPolicy
      */
     public function create(User $user): bool
     {
-        return $user->role->name === 'marketing';
+        return $user->role->name === 'admin' || $user->role->name === 'marketing';
     }
 
     /**
@@ -37,7 +37,7 @@ class KontenPolicy
      */
     public function update(User $user, Konten $konten): bool
     {
-        return $user->role->name === 'marketing';
+        return $user->role->name === 'admin' || $user->role->name === 'marketing';
     }
 
     /**
@@ -45,12 +45,12 @@ class KontenPolicy
      */
     public function delete(User $user, Konten $konten): bool
     {
-        return $user->role->name === 'marketing';
+        return $user->role->name === 'admin' || $user->role->name === 'marketing';
     }
 
     public function deleteAny(User $user): bool
     {
-        return $user->role->name === 'marketing';
+        return $user->role->name === 'admin' || $user->role->name === 'marketing';
     }
 
     /**
@@ -58,7 +58,7 @@ class KontenPolicy
      */
     public function restore(User $user, Konten $konten): bool
     {
-        return $user->role->name === 'marketing';
+        return $user->role->name === 'admin' || $user->role->name === 'marketing';
     }
 
     /**
@@ -66,6 +66,6 @@ class KontenPolicy
      */
     public function forceDelete(User $user, Konten $konten): bool
     {
-        return $user->role->name === 'marketing';
+        return $user->role->name === 'admin' || $user->role->name === 'marketing';
     }
 }
