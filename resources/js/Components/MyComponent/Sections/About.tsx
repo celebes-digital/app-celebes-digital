@@ -23,7 +23,7 @@ export default function About({ clients }: { clients: Client[] }) {
     return (
         <div className="font-jakarta relative">
             <img
-                src="/assets/image/halfcircle_1.png"
+                src="/assets/image/halfcircle_1.webp"
                 className="absolute left-0 top-1/3 h-72 -translate-y-1/3"
                 alt="half circle"
             />
@@ -139,7 +139,7 @@ export default function About({ clients }: { clients: Client[] }) {
                             />
                         </svg>
                         <img
-                            src="/assets/image/computer.png"
+                            src="/assets/image/computer.webp"
                             className="max-w-full lg:max-w-md"
                             alt="computer"
                         />

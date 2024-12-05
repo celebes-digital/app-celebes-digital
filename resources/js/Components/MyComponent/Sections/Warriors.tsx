@@ -8,7 +8,7 @@ export default function Warriors({ warriors }: { warriors: Warrior[] }) {
     return (
         <div className="relative">
             <img
-                src="/assets/image/halfcircle_1.png"
+                src="/assets/image/halfcircle_1.webp"
                 alt="half circle"
                 className="absolute left-0 top-0"
                 width={100}

@@ -83,6 +83,7 @@ class PortofolioResource extends Resource
                     FileUpload::make('screenshots')
                         ->columnSpan(2)
                         ->image()
+                        ->optimize('webp')
                         ->multiple()
                         ->directory('portofolios/screenshots')
                         ->required(),

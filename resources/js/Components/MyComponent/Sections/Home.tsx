@@ -3,7 +3,7 @@ import { Link } from "@inertiajs/react";
 
 export default function Home() {
     return (
-        <div className="font-jakarta flex items-center justify-center bg-[url('/assets/image/home_background.png')] bg-cover bg-center px-5 py-36 sm:py-20 md:px-0">
+        <div className="font-jakarta flex items-center justify-center bg-[url('/assets/image/home_background.webp')] bg-cover bg-center px-5 py-36 sm:py-20 md:px-0">
             <div className="container relative space-y-10 text-center">
                 <div className="space-y-5 sm:space-y-10">
                     <h1 className="text-[40px] font-extrabold leading-[60px] tracking-[2%] text-[#292929] md:text-[60px] md:leading-[80px] lg:text-[72px] lg:leading-[90px]">
@@ -28,7 +28,7 @@ export default function Home() {
                             Mendunia
                             <span className="flex items-center">
                                 <img
-                                    src="/assets/image/bumi.png"
+                                    src="/assets/image/bumi.webp"
                                     alt="bumi"
                                     className="animate-spin-earth h-[50px] md:h-[60px] lg:h-[70px]"
                                 />

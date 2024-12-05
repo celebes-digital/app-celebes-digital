@@ -13,7 +13,7 @@ export default function Products({
     return (
         <div className="relative" id="layanan">
             <img
-                src="/assets/image/halfcircle_2.png"
+                src="/assets/image/halfcircle_2.webp"
                 className="absolute top-1/2 right-0 h-72"
                 alt="half circle"
             />

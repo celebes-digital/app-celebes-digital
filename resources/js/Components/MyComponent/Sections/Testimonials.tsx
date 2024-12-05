@@ -12,7 +12,7 @@ export default function Testimonials({
     return (
         <div className="relative">
             <img
-                src="/assets/image/halfcircle_2.png"
+                src="/assets/image/halfcircle_2.webp"
                 alt="half circle"
                 className="absolute right-0 top-0"
                 width={80}
