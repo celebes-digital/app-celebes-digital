@@ -11,6 +11,7 @@ export default function Warriors({ warriors }: { warriors: Warrior[] }) {
                 src="/assets/image/halfcircle_1.webp"
                 alt="half circle"
                 className="absolute left-0 top-0"
+                loading="lazy"
                 width={100}
             />
             <div

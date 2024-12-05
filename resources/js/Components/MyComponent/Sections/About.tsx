@@ -25,6 +25,7 @@ export default function About({ clients }: { clients: Client[] }) {
             <img
                 src="/assets/image/halfcircle_1.webp"
                 className="absolute left-0 top-1/3 h-72 -translate-y-1/3"
+                loading="lazy"
                 alt="half circle"
             />
             <div className="container flex flex-col items-center space-y-10 overflow-hidden px-5 py-16">
@@ -141,6 +142,7 @@ export default function About({ clients }: { clients: Client[] }) {
                         <img
                             src="/assets/image/computer.webp"
                             className="max-w-full lg:max-w-md"
+                            loading="lazy"
                             alt="computer"
                         />
                     </div>

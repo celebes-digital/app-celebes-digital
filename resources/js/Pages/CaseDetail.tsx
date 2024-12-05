@@ -41,10 +41,11 @@ export default function CaseDetail({ portofolio }: { portofolio: Portofolio }) {
 
             <div className="font-jakarta relative pb-20">
                 <img
-                    src="/assets/image/halfcircle_2.png"
+                    src="/assets/image/halfcircle_2.webp"
                     alt="half circle"
                     className="absolute right-0 top-40"
                     width={80}
+                    loading="lazy"
                 />
                 <div className="container space-y-20 px-5">
                     <div className="space-y-5">

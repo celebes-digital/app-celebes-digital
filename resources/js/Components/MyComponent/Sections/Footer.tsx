@@ -13,6 +13,7 @@ export default function Footer() {
                         <Link href="https://www.facebook.com/celebesdigital/" className="group">
                             <img
                                 src="/assets/image/icons/meta.svg"
+                                loading="lazy"
                                 width={18}
                                 className="transition duration-200 group-hover:-translate-y-1"
                                 alt="meta"
@@ -23,6 +24,7 @@ export default function Footer() {
                         <Link href="https://www.tiktok.com/@celebesdigital" className="group">
                             <img
                                 src="/assets/image/icons/tiktok.svg"
+                                loading="lazy"
                                 width={16}
                                 className="transition duration-200 group-hover:-translate-y-1"
                                 alt="tiktok"
@@ -33,6 +35,7 @@ export default function Footer() {
                         <Link href="https://www.youtube.com/@celebesdigital" className="group">
                             <img
                                 src="/assets/image/icons/youtube.svg"
+                                loading="lazy"
                                 width={18}
                                 className="transition duration-200 group-hover:-translate-y-1"
                                 alt="youtube"
@@ -48,6 +51,7 @@ export default function Footer() {
                         <Link href="https://www.linkedin.com/in/celebes-digital-2454b287/?originalSubdomain=id" className="group">
                             <img
                                 src="/assets/image/icons/linkedin.svg"
+                                loading="lazy"
                                 width={17}
                                 className="transition duration-200 group-hover:-translate-y-1"
                                 alt="linkedin"

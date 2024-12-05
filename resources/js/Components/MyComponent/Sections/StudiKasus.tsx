@@ -16,6 +16,7 @@ export default function StudiKasus({
         <div className="relative" id="case">
             <img
                 src="/assets/image/halfcircle_2.webp"
+                loading="lazy"
                 className="absolute -top-10 right-0 h-72"
                 alt="half circle"
             />

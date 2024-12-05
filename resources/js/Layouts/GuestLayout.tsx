@@ -12,7 +12,7 @@ export default function GuestLayout({ children }: PropsWithChildren) {
             <main className="min-h-screen">{children}</main>
 
             <a href="https://wa.me/6282292877750" className="bg-white rounded-full overflow-hidden fixed bottom-2 right-2 z-20">
-                <img src="/assets/image/icons/whatsapp.webp" alt="whatsapp" width={50} />
+                <img src="/assets/image/icons/whatsapp.webp" alt="whatsapp" loading="lazy" width={50} />
             </a>
 
             <Footer />

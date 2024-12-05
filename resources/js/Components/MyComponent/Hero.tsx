@@ -13,6 +13,7 @@ export default function Hero({
             <p className="relative z-20 max-w-screen-lg mx-auto">{subtitle}</p>
             <img
                 src="/assets/image/halfcircle_4.webp"
+                loading="lazy"
                 alt="halfcircle"
                 className="absolute bottom-0 left-0 z-10 w-32"
             />

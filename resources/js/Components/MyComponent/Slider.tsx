@@ -5,8 +5,6 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import "../../../css/slider.css";
-
 import { Autoplay, EffectCoverflow } from "swiper/modules";
 import { ArrowLeft, ArrowRight, Instagram } from "lucide-react";
 import { Warrior } from "@/types";
@@ -53,7 +51,7 @@ export default function Slider({ warriors }: { warriors: Warrior[] }) {
                                 slideShadows: true,
                             }}
                             modules={[EffectCoverflow, Autoplay]}
-                            className="w-full max-w-screen-lg"
+                            className="w-full max-w-screen-md"
                             onSlideChange={handleSlideChange}
                         >
                             {warriors.map((warrior, i) => (
@@ -77,6 +75,7 @@ export default function Slider({ warriors }: { warriors: Warrior[] }) {
                                             >
                                                 <img
                                                     src="/assets/image/icons/linkedin.svg"
+                                                    loading="lazy"
                                                     width={35}
                                                     className="transition duration-200 group-hover:-translate-y-1"
                                                     alt="linkedin"
@@ -86,6 +85,7 @@ export default function Slider({ warriors }: { warriors: Warrior[] }) {
                                     </div>
                                     <img
                                         src={`/storage/${warrior.image}`}
+                                        loading="lazy"
                                         className="w-full"
                                     />
                                 </SwiperSlide>
@@ -93,14 +93,14 @@ export default function Slider({ warriors }: { warriors: Warrior[] }) {
                         </Swiper>
                         <button
                             type="button"
-                            className="absolute left-5 top-1/2 z-30 w-fit -translate-y-1/2 cursor-pointer rounded-full border-2 border-white p-2 text-white transition duration-300 lg:border-gray-700 lg:text-gray-700 lg:hover:bg-gray-100"
+                            className="absolute left-5 top-1/2 z-30 w-fit -translate-y-1/2 cursor-pointer rounded-full border-2 border-white p-2 text-white transition duration-300 md:border-gray-700 md:text-gray-700 md:hover:bg-gray-100"
                             onClick={handlePrev}
                         >
                             <ArrowLeft />
                         </button>
                         <button
                             type="button"
-                            className="absolute right-5 top-1/2 z-30 w-fit -translate-y-1/2 cursor-pointer rounded-full border-2 border-white p-2 text-white transition duration-300 lg:border-gray-700 lg:text-gray-700 lg:hover:bg-gray-50"
+                            className="absolute right-5 top-1/2 z-30 w-fit -translate-y-1/2 cursor-pointer rounded-full border-2 border-white p-2 text-white transition duration-300 md:border-gray-700 md:text-gray-700 md:hover:bg-gray-50"
                             onClick={handleNext}
                         >
                             <ArrowRight />

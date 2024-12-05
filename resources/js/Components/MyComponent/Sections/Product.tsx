@@ -14,6 +14,7 @@ export default function Products({
         <div className="relative" id="layanan">
             <img
                 src="/assets/image/halfcircle_2.webp"
+                loading="lazy"
                 className="absolute top-1/2 right-0 h-72"
                 alt="half circle"
             />
@@ -51,7 +52,7 @@ export default function Products({
                         {products.map((product, i) => (
                             <div key={i} className="w-full space-y-3 max-w-sm mx-auto bg-white p-5 rounded-md gap-2 flex flex-col justify-between">
                                 <div className="h-24 flex items-center">
-                                    <img src={`/storage/${product.image}`} className="saturate-150 mx-auto max-h-24 max-w-36" alt={product.name} />
+                                    <img src={`/storage/${product.image}`} className="saturate-150 mx-auto max-h-24 max-w-36" loading="lazy" alt={product.name} />
                                 </div>
                                 <h3 className="font-bold text-2xl min-h-">{product.name}</h3>
                                 <p className="text-sm lg:text-base line-clamp-2">{product.description}</p>

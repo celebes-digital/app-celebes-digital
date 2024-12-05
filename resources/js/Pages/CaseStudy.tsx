@@ -15,7 +15,6 @@ export default function CaseStudy({
     categories: Category[];
     product?: Product;
 }) {
-    console.log(portofolios);
     return (
         <GuestLayout>
             <Hero

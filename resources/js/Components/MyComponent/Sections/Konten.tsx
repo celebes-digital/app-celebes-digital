@@ -9,6 +9,7 @@ export default function Konten({
         <div className="relative" id="case">
             <img
                 src="/assets/image/halfcircle_2.webp"
+                loading="lazy"
                 className="absolute top-1/2 right-0 h-72"
                 alt="half circle"
             />
@@ -25,7 +26,7 @@ export default function Konten({
                     <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
                         {kontens.map((konten, i) => (
                             <a href={konten.link} target="_blank" key={i}>
-                                <img src={`/storage/${konten.thumbnail}`} className="w-full rounded-xl hover:scale-105 transition duration-300" alt={konten.link} />
+                                <img src={`/storage/${konten.thumbnail}`} className="w-full rounded-xl hover:scale-105 transition duration-300" loading="lazy" alt={konten.link} />
                             </a>
                         ))}
                     </div>

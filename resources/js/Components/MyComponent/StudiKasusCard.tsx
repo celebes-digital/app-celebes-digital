@@ -19,6 +19,7 @@ export default function StudiKasusCard({
                 <img
                     src={`/storage/${portofolio.thumbnail}`}
                     className="w-full transition duration-300 group-hover:scale-105"
+                    loading="lazy"
                     alt="image"
                 />
             </Link>

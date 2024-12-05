@@ -23,6 +23,7 @@ export default function JoinUs() {
                 <img
                     src="/assets/image/join_circle.webp"
                     className="absolute right-0 top-0 hidden h-full lg:block"
+                    loading="lazy"
                     alt="circle"
                 />
             </div>

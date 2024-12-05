@@ -36,7 +36,7 @@ export default function Navbar() {
         <div className="sticky top-0 z-50 bg-white px-5 shadow-md">
             <div className="font-roboto container flex items-center justify-between py-4">
                 <Link href="/">
-                    <img src="/assets/image/logo.webp" alt="logo" width={140} />
+                    <img src="/assets/image/logo.webp" alt="logo" width={140} loading="lazy" />
                 </Link>
                 <ul className="hidden items-center gap-10 lg:flex">
                     {links.map((link, i) => (
@@ -72,6 +72,7 @@ export default function Navbar() {
                                 >
                                     <img
                                         src="/assets/image/logo.webp"
+                                        loading="lazy"
                                         alt="logo"
                                         width={140}
                                     />

@@ -29,6 +29,7 @@ export default function Home() {
                             <span className="flex items-center">
                                 <img
                                     src="/assets/image/bumi.webp"
+                                    loading="lazy"
                                     alt="bumi"
                                     className="animate-spin-earth h-[50px] md:h-[60px] lg:h-[70px]"
                                 />

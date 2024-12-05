@@ -35,6 +35,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimoni }) {
         <div className="mr-5 h-fit min-w-[340px] max-w-[340px] space-y-7 rounded-xl border p-5 shadow-md">
             <img
                 src={`/storage/${testimonial.image}`}
+                loading="lazy"
                 alt={testimonial.fullname}
                 className="h-16 w-16 rounded-full"
             />
