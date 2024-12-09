@@ -41,6 +41,7 @@ export default function Slider({ warriors }: { warriors: Warrior[] }) {
                             slidesPerView={"auto"}
                             centeredSlides={true}
                             autoplay={true}
+                            initialSlide={3}
                             loop={true}
                             freeMode={true}
                             coverflowEffect={{

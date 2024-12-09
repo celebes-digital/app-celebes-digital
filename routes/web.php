@@ -3,6 +3,7 @@
 use App\Models\Category;
 use App\Models\Client;
 use App\Models\ContactMessage;
+use App\Models\Galery;
 use App\Models\Konten;
 use App\Models\Pesanan;
 use App\Models\Portofolio;
@@ -15,53 +16,69 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
-        'portofolios' => Portofolio::with('categories')->latest()->take(3)->get(),
+        'portofolios' => Portofolio::with('product')->latest()->take(3)->get(),
         'products' => Product::all(),
         'testimonials' => Testimonials::latest()->get(),
         'clients' => Client::latest()->get(),
         'warriors' => Warriors::latest()->get(),
+        'galeries' => Galery::latest()->take(3)->get(),
         'kontens' => Konten::latest()->get()
     ]);
 });
 
 Route::get('/case', function () {
-    $portofolios = Portofolio::with('categories')->latest();
+    $portofolios = Portofolio::with('product.categories')->latest();
 
-    if (request('category')) {
-        $portofolios->whereHas('categories', function ($query) {
-            $query->where('categories.slug', request('category'));
+    if ($categorySlug = request('category')) {
+        $portofolios->whereHas('product.categories', function ($query) use ($categorySlug) {
+            $query->where('categories.slug', $categorySlug);
         });
     }
 
     return Inertia::render('CaseStudy', [
-        'portofolios' => $portofolios->get(),
+        'portofolios' => $portofolios->paginate(6)->appends(request()->query()),
         'categories' => Category::latest()->get()
     ]);
 });
 
+Route::get('/galeri', function () {
+    return Inertia::render('Galeri', [
+        'galeries' => Galery::latest()->paginate(8)
+    ]);
+});
+
+Route::get('/case/{portofolio}/detail', function (Portofolio $portofolio) {
+    $portofolio->load(['product', 'client']);
+    return Inertia::render('CaseDetail', [
+        'portofolio' => $portofolio
+    ]);
+});
 
 Route::get('/case/{product}', function (Product $product) {
-    $portofolios = Portofolio::with('categories')->latest();
+    $portofolios = Portofolio::with('product.categories')->latest();
 
     if (request('category')) {
-        $portofolios->whereHas('categories', function ($query) {
+        $portofolios->whereHas('product.categories', function ($query) {
             $query->where('categories.slug', request('category'));
         });
     }
 
     $portofolios->where('product_id', $product->id);
 
+    $product->load(['categories', 'clients']);
+
     return Inertia::render('CaseStudy', [
-        'portofolios' => $portofolios->get(),
-        'categories' => Category::latest()->get(),
-        'product' => $product
+        'portofolios' => $portofolios->paginate(6)->appends(request()->query()),
+        'product' => $product,
+        'categories' => $product->categories
     ]);
 });
 
-Route::get('/case/{portofolio}/detail', function (Portofolio $portofolio) {
-    $portofolio->load(['categories', 'client']);
-    return Inertia::render('CaseDetail', [
-        'portofolio' => $portofolio
+Route::get('/product/{product}', function (Product $product) {
+    $product->load(['categories', 'clients']);
+
+    return Inertia::render('ProductDetail', [
+        'product' => $product
     ]);
 });
 
@@ -77,8 +94,8 @@ Route::post('/contact', function (Request $request) {
         'ide' => 'required|min:2'
     ]);
 
-    if ($request->has('portofolio_id')) {
-        $v['portofolio_id'] = $request->portofolio_id;
+    if ($request->has('product_id')) {
+        $v['product_id'] = $request->product_id;
     }
 
     ContactMessage::create($v);

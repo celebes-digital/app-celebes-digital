@@ -32,7 +32,9 @@ class ProductResource extends Resource
                         ->required()
                         ->optimize('webp')
                         ->columnSpanFull(),
+
                     Forms\Components\TextInput::make('name')
+                        ->label('Nama produk')
                         ->required()
                         ->maxLength(255)
                         ->live(onBlur: true)
@@ -53,12 +55,31 @@ class ProductResource extends Resource
                             }
 
                             $set('slug', $slug);
-                        })->columnSpan(2),
+                        }),
 
                     Forms\Components\Hidden::make('slug')
                         ->unique(ignoreRecord: true),
 
+                    Forms\Components\Select::make('categories')
+                        ->relationship('categories', 'name')
+                        ->multiple()
+                        ->preload()
+                        ->required(),
+
+                    Forms\Components\FileUpload::make('screenshots')
+                        ->columnSpan(2)
+                        ->image()
+                        ->optimize('webp')
+                        ->multiple()
+                        ->directory('product/screenshots')
+                        ->required(),
+
                     Forms\Components\Textarea::make('description')
+                        ->required()
+                        ->columnSpanFull(),
+
+                    Forms\Components\RichEditor::make('detail')
+                        ->label('Detail produk')
                         ->required()
                         ->columnSpanFull(),
                 ])->columns(2)
@@ -70,16 +91,29 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('image')->height('100px'),
+
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
+
+                Tables\Columns\TextColumn::make('categories.name')
+                    ->badge()
+                    ->separator(','),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: false),
+                    ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: false),
+                    ->toggleable(isToggledHiddenByDefault: true),
+            ])
+            ->filters([
+                Tables\Filters\SelectFilter::make('category')
+                    ->relationship('categories', 'name')
+                    ->multiple()
+                    ->preload()
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

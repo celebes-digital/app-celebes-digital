@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('chanels', function (Blueprint $table) {
             $table->id();
-            $table->string('social_media');
+            $table->string('chanel');
             $table->string('name');
             $table->string('link');
             $table->text('description');

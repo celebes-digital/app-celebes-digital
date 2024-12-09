@@ -11,7 +11,7 @@ export default function Products({
     const { ref, isVisible } = useInView();
 
     return (
-        <div className="relative" id="layanan">
+        <div className="relative">
             <img
                 src="/assets/image/halfcircle_2.webp"
                 loading="lazy"
@@ -20,11 +20,11 @@ export default function Products({
             />
             <div className="font-jakarta container relative space-y-14 px-5 py-20">
                 <div className="relative space-y-5 text-center">
-                    <h1 className="text-3xl font-bold leading-[120%] md:text-4xl lg:text-[42px]">
-                        Layanan Kami
+                    <h1 className="text-3xl font-bold leading-[120%] md:text-4xl lg:text-[42px]" id="produk">
+                        Produk Kami
                     </h1>
                     <p className="font-semibold">
-                        Layanan yang dapat {" "}
+                        Produk yang dapat {" "}
                         <span className="relative">
                             Membuat
                             <svg
@@ -57,7 +57,7 @@ export default function Products({
                                 <h3 className="font-bold text-2xl min-h-">{product.name}</h3>
                                 <p className="text-sm lg:text-base line-clamp-2">{product.description}</p>
                                 <Button asChild className="hover:bg-red-600 transition">
-                                    <Link href={`/case/${product.slug}`}>Lihat Studi Kasus</Link>
+                                    <Link href={`/product/${product.slug}`}>Lihat Studi Kasus</Link>
                                 </Button>
                             </div>
                         ))}

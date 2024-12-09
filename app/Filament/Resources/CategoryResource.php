@@ -61,10 +61,6 @@ class CategoryResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('portofolios_count')
-                    ->label('Total Portofolios')
-                    ->counts('portofolios')
-                    ->alignCenter(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->sortable()
                     ->formatStateUsing(

@@ -3,8 +3,8 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\KontenResource\Pages;
+use App\Models\Chanel;
 use App\Models\Konten;
-use App\Models\SocialMedia;
 use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
@@ -39,11 +39,10 @@ class KontenResource extends Resource
                         ->columnSpanFull(),
 
                     Forms\Components\TextInput::make('link')
-                        ->required()
                         ->maxLength(255)
                         ->reactive()
                         ->afterStateUpdated(function ($state, callable $set, callable $get) {
-                            $socialMedias = SocialMedia::all();
+                            $socialMedias = Chanel::all();
 
                             $normalizedState = strtolower($state);
 
@@ -51,18 +50,18 @@ class KontenResource extends Resource
 
                             if ($parsedUrl) {
                                 foreach ($socialMedias as $socialMedia) {
-                                    $pattern = strtolower($socialMedia->name) . '.com';
+                                    $pattern = strtolower($socialMedia->chanel) . '.com';
 
                                     if (stripos($parsedUrl, $pattern) !== false) {
-                                        $set('social_media_id', $socialMedia->id);
+                                        $set('chanel_id', $socialMedia->id);
                                         return;
                                     }
                                 }
                             }
                         }),
 
-                    Forms\Components\Select::make('social_media_id')
-                        ->relationship('socialMedia', 'name')
+                    Forms\Components\Select::make('chanel_id')
+                        ->relationship('chanel', 'chanel')
                         ->preload()
                         ->required(),
 
@@ -79,10 +78,13 @@ class KontenResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('thumbnail')
                     ->height('100px'),
+
                 Tables\Columns\TextColumn::make('link')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('socialMedia.name')
+
+                Tables\Columns\TextColumn::make('chanel.chanel')
                     ->badge(),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->sortable()
                     ->formatStateUsing(
@@ -92,6 +94,7 @@ class KontenResource extends Resource
                             ->translatedFormat('d F Y')
                     )
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('updated_at')
                     ->sortable()
                     ->formatStateUsing(
@@ -103,8 +106,8 @@ class KontenResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true)
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('socialMedia')
-                    ->relationship('socialMedia', 'name')
+                Tables\Filters\SelectFilter::make('chanel')
+                    ->relationship('chanel', 'chanel')
                     ->multiple()
                     ->preload()
             ])

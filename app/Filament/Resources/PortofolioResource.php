@@ -41,6 +41,8 @@ class PortofolioResource extends Resource
 
                     Forms\Components\TextInput::make('name')
                         ->required()
+                        ->label('Nama Aplikasi')
+                        ->columnSpan(2)
                         ->maxLength(255)
                         ->afterStateUpdated(function (string $state, callable $set, ?Model $record) {
                             $slug = Str::slug($state);
@@ -74,12 +76,6 @@ class PortofolioResource extends Resource
                         ->preload()
                         ->required(),
 
-                    Forms\Components\Select::make('categories')
-                        ->relationship('categories', 'name')
-                        ->multiple()
-                        ->preload()
-                        ->required(),
-
                     FileUpload::make('screenshots')
                         ->columnSpan(2)
                         ->image()
@@ -104,7 +100,7 @@ class PortofolioResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
 
-                Tables\Columns\TextColumn::make('categories.name')
+                Tables\Columns\TextColumn::make('product.name')
                     ->badge()
                     ->separator(','),
 
@@ -128,10 +124,6 @@ class PortofolioResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true)
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('categories')
-                    ->relationship('categories', 'name')
-                    ->multiple()
-                    ->preload(),
                 Tables\Filters\SelectFilter::make('product')
                     ->relationship('product', 'name')
                     ->multiple()

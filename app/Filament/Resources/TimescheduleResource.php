@@ -140,12 +140,10 @@ class TimescheduleResource extends Resource
                         $q->where('name', 'production')
                             ->orWhere('name', 'cto');
                     }))
-                    ->multiple()
                     ->preload(),
 
                 Tables\Filters\SelectFilter::make('Item Kerja')
                     ->relationship('itemKerja', 'name')
-                    ->multiple()
                     ->preload(),
             ])
             ->actions([

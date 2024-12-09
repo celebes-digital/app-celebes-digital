@@ -17,13 +17,6 @@ return new class extends Migration
             $table->string('name');
             $table->timestamps();
         });
-
-        Schema::create('category_portofolio', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
-            $table->foreignId('portofolio_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
-        });
     }
 
     /**

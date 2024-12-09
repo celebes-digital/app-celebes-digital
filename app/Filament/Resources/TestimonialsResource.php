@@ -61,6 +61,7 @@ class TestimonialsResource extends Resource
                         ->maxLength(255),
 
                     TextInput::make('company')
+                        ->label('Nama perusahaan')
                         ->required()
                         ->placeholder('Perusahaan client')
                         ->maxLength(255),

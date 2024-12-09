@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('contact_messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('portofolio_id')->nullable();
+            $table->foreignId('product_id')->nullable();
             $table->string('name');
             $table->string('no_telepon');
             $table->string('email');

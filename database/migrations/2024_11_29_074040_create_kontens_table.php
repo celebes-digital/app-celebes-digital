@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('kontens', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('social_media_id');
+            $table->foreignId('chanel_id');
             $table->string('thumbnail');
-            $table->string('link');
+            $table->string('link')->nullable();
             $table->text('description');
             $table->timestamps();
         });

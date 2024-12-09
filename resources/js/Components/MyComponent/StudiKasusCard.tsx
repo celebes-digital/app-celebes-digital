@@ -38,7 +38,7 @@ export default function StudiKasusCard({
                     </p>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                    {portofolio.categories.map((category, i) => (
+                    {portofolio.product.categories.map((category, i) => (
                         <CategoryButton
                             name={category.name}
                             slug={category.slug}
@@ -52,6 +52,8 @@ export default function StudiKasusCard({
 }
 
 export function CategoryButton({ name, slug }: { name: string; slug?: string }) {
+    const currentParams = new URLSearchParams(window.location.search).get('category') ? new URLSearchParams(window.location.search).get('category') : undefined
+
     const handleClick = () => {
         const queryParams = new URLSearchParams(window.location.search);
         if (slug) {
@@ -59,13 +61,13 @@ export function CategoryButton({ name, slug }: { name: string; slug?: string }) 
         } else {
             queryParams.delete('category');
         }
-        router.visit(`${window.location.pathname}?${queryParams.toString()}`);
+        router.visit(`${window.location.pathname}?${queryParams.toString()}&page=1`);
     };
 
     return (
         <button
             onClick={handleClick}
-            className="h-fit rounded-full border-[1.5px] border-black px-5 py-1.5 text-sm font-medium leading-[150%] tracking-[2%] transition hover:bg-black hover:text-white"
+            className={`h-fit rounded-full border-[1.5px] border-black px-5 py-1.5 text-sm font-medium leading-[150%] tracking-[2%] transition hover:bg-black hover:text-white ${currentParams === slug ? "bg-black text-white" : "bg-transparent"}`}
         >
             {name}
         </button>

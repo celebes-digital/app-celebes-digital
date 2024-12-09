@@ -22,12 +22,16 @@ const links = [
         href: "/#case",
     },
     {
-        label: "Layanan",
-        href: "/#layanan",
+        label: "Produk",
+        href: "/#produk",
     },
     {
         label: "Warriors",
         href: "/#warriors",
+    },
+    {
+        label: "Galeri",
+        href: "/#galeri",
     },
 ];
 

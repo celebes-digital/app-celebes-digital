@@ -8,8 +8,8 @@ class Category extends Model
 {
     protected $guarded = ['id'];
 
-    public function portofolios()
+    public function product()
     {
-        return $this->belongsToMany(Portofolio::class);
+        return $this->belongsToMany(Product::class);
     }
 }

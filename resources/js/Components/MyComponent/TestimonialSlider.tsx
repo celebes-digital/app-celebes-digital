@@ -45,7 +45,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimoni }) {
                     {testimonial.fullname}
                 </h4>
                 <h5 className="text-sm font-semibold leading-[150%] text-black/50">
-                    {testimonial.profession}, {testimonial.company}
+                    {testimonial.company}
                 </h5>
             </div>
         </div>

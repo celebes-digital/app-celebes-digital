@@ -13,13 +13,13 @@ export default function Testimonials({
         <div className="relative">
             <img
                 src="/assets/image/halfcircle_2.webp"
-                    loading="lazy"
+                loading="lazy"
                 alt="half circle"
                 className="absolute right-0 top-0"
                 width={80}
             />
             <div className="font-jakarta container relative space-y-10 px-5 py-20">
-                <div className="space-y-5">
+                <div className="space-y-5" id="testimoni">
                     <h2 className="relative mx-auto w-fit text-center text-3xl font-bold leading-[120%] md:text-4xl lg:text-[42px]">
                         Suara{" "}
                         <span className="relative inline-block sm:ml-1 sm:inline">

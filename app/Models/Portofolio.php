@@ -8,11 +8,6 @@ class Portofolio extends Model
 {
     protected $guarded = ['id'];
 
-    public function categories()
-    {
-        return $this->belongsToMany(Category::class);
-    }
-
     public function product()
     {
         return $this->belongsTo(Product::class);

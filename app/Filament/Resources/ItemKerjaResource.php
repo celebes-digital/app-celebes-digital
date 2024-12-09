@@ -48,9 +48,15 @@ class ItemKerjaResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('schedule_count')
-                    ->label('Total Timeschedule')
+                    ->label('Total Item')
                     ->getStateUsing(function ($record) {
-                        return $record->schedule()->where('is_finished', true)->count();
+                        return $record->schedule()->count();
+                    })
+                    ->alignCenter(),
+                Tables\Columns\TextColumn::make('progress_count')
+                    ->label('Total Item (On Progress)')
+                    ->getStateUsing(function ($record) {
+                        return $record->schedule()->where('is_finished', false)->count();
                     })
                     ->alignCenter(),
                 Tables\Columns\TextColumn::make('created_at')

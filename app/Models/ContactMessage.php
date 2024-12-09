@@ -8,8 +8,8 @@ class ContactMessage extends Model
 {
     protected $guarded = ['id'];
 
-    public function portofolio()
+    public function product()
     {
-        return $this->belongsTo(Portofolio::class);
+        return $this->belongsTo(Product::class);
     }
 }

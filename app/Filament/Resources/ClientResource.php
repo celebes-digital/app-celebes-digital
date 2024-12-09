@@ -5,16 +5,13 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ClientResource\Pages;
 use App\Models\Client;
 use Carbon\Carbon;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Components\TextInput;
+use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Support\Facades\Auth;
 
 class ClientResource extends Resource
 {
@@ -28,20 +25,27 @@ class ClientResource extends Resource
     {
         return $form
             ->schema([
-                Section::make([
-                    FileUpload::make('image')
-                        ->label('Company Image')
+                Forms\Components\Section::make([
+                    Forms\Components\FileUpload::make('image')
+                        ->label('Logo perusahaan')
                         ->optimize('webp')
                         ->directory('company-image')
                         ->previewable(true)
                         ->columnSpan(2)
                         ->required(),
 
-                    TextInput::make('name')
+                    Forms\Components\TextInput::make('name')
+                        ->label('Nama perusahaan')
                         ->required()
                         ->placeholder('Nama perusahaan')
                         ->maxLength(255),
-                ])
+
+                    Forms\Components\Select::make('products')
+                        ->relationship('products', 'name')
+                        ->multiple()
+                        ->preload()
+                        ->required(),
+                ])->columns(2)
             ]);
     }
 

@@ -13,7 +13,7 @@ export default function StudiKasus({
     const { ref: svgRef2, isVisible: isVisible2 } = useInView();
 
     return (
-        <div className="relative" id="case">
+        <div className="relative">
             <img
                 src="/assets/image/halfcircle_2.webp"
                 loading="lazy"
@@ -21,7 +21,7 @@ export default function StudiKasus({
                 alt="half circle"
             />
             <div className="font-jakarta container relative space-y-14 px-5 py-20">
-                <div className="relative space-y-5 text-center">
+                <div className="relative space-y-5 text-center" id="case">
                     <svg
                         width="115"
                         height="153"

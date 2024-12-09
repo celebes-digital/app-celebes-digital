@@ -8,8 +8,8 @@ class Konten extends Model
 {
     protected $guarded = ['id'];
 
-    public function socialMedia()
+    public function chanel()
     {
-        return $this->belongsTo(SocialMedia::class);
+        return $this->belongsTo(Chanel::class);
     }
 }

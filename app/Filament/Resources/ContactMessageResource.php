@@ -21,11 +21,6 @@ class ContactMessageResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-envelope';
 
-    public static function canAccess(): bool
-    {
-        return Auth::user()->role->name === 'admin';
-    }
-
     public static function form(Form $form): Form
     {
         return $form
@@ -35,8 +30,8 @@ class ContactMessageResource extends Resource
                         ->required()
                         ->maxLength(255)
                         ->columnSpan(2),
-                    Forms\Components\Select::make('product_portofolio')
-                        ->relationship('portofolio', 'name')
+                    Forms\Components\Select::make('nama_product')
+                        ->relationship('product', 'name')
                         ->preload()
                         ->required(),
                     Forms\Components\TextInput::make('no_telepon')
@@ -57,13 +52,13 @@ class ContactMessageResource extends Resource
 
     public static function table(Table $table): Table
     {
+
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('portofolio.name')
-                    ->label('Nama portofolio')
-                    ->state(fn($record) => $record->portofolio?->name ?? '-')
+                Tables\Columns\TextColumn::make('nama_product')
+                    ->state(fn($record) => $record->product?->name ?? '-')
                     ->badge()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('no_telepon')
@@ -81,9 +76,8 @@ class ContactMessageResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('Portofolio')
-                    ->relationship('portofolio', 'name')
-                    ->multiple()
+                Tables\Filters\SelectFilter::make('product')
+                    ->relationship('product', 'name')
                     ->preload(),
             ])
             ->actions([
