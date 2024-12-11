@@ -20,8 +20,8 @@ export default function StudiKasus({
                 className="absolute -top-10 right-0 h-72"
                 alt="half circle"
             />
-            <div className="font-jakarta container relative space-y-14 px-5 py-20">
-                <div className="relative space-y-5 text-center" id="case">
+            <div className="font-jakarta container relative space-y-14 px-5 py-20" id="case">
+                <div className="relative space-y-5 text-center">
                     <svg
                         width="115"
                         height="153"

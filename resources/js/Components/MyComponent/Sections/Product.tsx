@@ -18,9 +18,9 @@ export default function Products({
                 className="absolute top-1/2 right-0 h-72"
                 alt="half circle"
             />
-            <div className="font-jakarta container relative space-y-14 px-5 py-20">
+            <div className="font-jakarta container relative space-y-14 px-5 py-20" id="produk">
                 <div className="relative space-y-5 text-center">
-                    <h1 className="text-3xl font-bold leading-[120%] md:text-4xl lg:text-[42px]" id="produk">
+                    <h1 className="text-3xl font-bold leading-[120%] md:text-4xl lg:text-[42px]">
                         Produk Kami
                     </h1>
                     <p className="font-semibold">
