@@ -32,10 +32,11 @@ export default function About({ clients }: { clients: Client[] }) {
                 <p className="w-fit text-center font-semibold leading-[150%] tracking-[2%]">
                     {/* Dipercaya oleh perusahaan besar dan kecil, */}
                     Dipercaya oleh berbagai perusahaan lokal dan nasional di
-                    Indonesia termasuk para pelaku UKM di kota Makassar untuk
+                    Indonesia termasuk para pelaku UKM di kota Makassar
+                    untuk&nbsp;&nbsp;
                     <span className="relative inline-block sm:ml-1 sm:inline">
                         {/* di mana pun */}
-                        digitalisasi 
+                        digitalisasi&nbsp;
                         <svg
                             width="160"
                             ref={svgRef}
@@ -53,7 +54,7 @@ export default function About({ clients }: { clients: Client[] }) {
                             />
                         </svg>
                     </span>
-                    bisnis.
+                    &nbsp;bisnis.
                 </p>
                 <ClientSlider clients={clients} />
             </div>
