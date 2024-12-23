@@ -54,7 +54,7 @@ export default function About({ clients }: { clients: Client[] }) {
                             />
                         </svg>
                     </span>
-                    &nbsp;bisnis.
+                    &nbsp;&nbsp;bisnis.
                 </p>
                 <ClientSlider clients={clients} />
             </div>
