@@ -1,11 +1,7 @@
 import Hero from "@/Components/MyComponent/Hero";
-import { Button } from "@/Components/ui/button";
 import GuestLayout from "@/Layouts/GuestLayout";
-import { extractFirstParagraph } from "@/lib/paragrafExtract";
 import { Portofolio } from "@/types";
-import { Link, useForm } from "@inertiajs/react";
-import { SyntheticEvent } from "react";
-import toast from "react-hot-toast";
+import { Link } from "@inertiajs/react";
 
 export default function CaseDetail({ portofolio }: { portofolio: Portofolio }) {
     return (
