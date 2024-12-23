@@ -35,7 +35,7 @@ export default function About({ clients }: { clients: Client[] }) {
                     Indonesia termasuk para pelaku UKM di kota Makassar untuk
                     <span className="relative inline-block sm:ml-1 sm:inline">
                         {/* di mana pun */}
-                        digitalisasi bisnis.
+                        digitalisasi
                         <svg
                             width="160"
                             ref={svgRef}
@@ -53,6 +53,7 @@ export default function About({ clients }: { clients: Client[] }) {
                             />
                         </svg>
                     </span>
+                    bisnis.
                 </p>
                 <ClientSlider clients={clients} />
             </div>
