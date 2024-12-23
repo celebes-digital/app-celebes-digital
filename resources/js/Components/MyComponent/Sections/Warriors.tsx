@@ -15,9 +15,9 @@ export default function Warriors({ warriors }: { warriors: Warrior[] }) {
                 width={100}
             />
             <div
-                className="font-jakarta container space-y-10 py-20"
+                className="font-jakarta container space-y-10 py-20" id="warriors"
             >
-                <div className="space-y-7 text-center" id="warriors">
+                <div className="space-y-7 text-center">
                     <h1 className="text-3xl font-bold leading-[120%] md:text-4xl lg:text-[42px]">
                         Warriors
                     </h1>

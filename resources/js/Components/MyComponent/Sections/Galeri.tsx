@@ -16,8 +16,8 @@ export default function Galeri({
                 className="absolute top-1/2 left-0 h-72"
                 alt="half circle"
             />
-            <div className="font-jakarta container relative space-y-14 px-5 py-28">
-                <div className="relative space-y-5 text-center" id="galeri">
+            <div className="font-jakarta container relative space-y-14 px-5 py-28" id="galeri">
+                <div className="relative space-y-5 text-center">
                     <h1 className="text-3xl font-bold leading-[120%] md:text-4xl lg:text-[42px]">
                         Cek Galeri Kami!
                     </h1>
