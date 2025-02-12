@@ -6,11 +6,11 @@ export default function Hero({
     subtitle?: string;
 }) {
     return (
-        <div className="font-jakarta relative space-y-5 overflow-hidden bg-primary px-5 py-32 text-center text-white selection:bg-white selection:text-primary">
-            <h1 className="relative z-20 text-3xl font-bold leading-[120%] md:text-4xl lg:text-[42px]">
+        <div className="font-jakarta relative space-y-5 overflow-hidden bg-primary px-5 py-32 text-center text-white selection:bg-white">
+            <h1 className="relative z-20 text-3xl font-bold leading-[120%] md:text-4xl lg:text-[42px] selection:text-primary">
                 {title}
             </h1>
-            <p className="relative z-20 max-w-screen-lg mx-auto">{subtitle}</p>
+            <p className="relative z-20 max-w-screen-lg mx-auto selection:text-primary">{subtitle}</p>
             <img
                 src="/assets/image/halfcircle_4.webp"
                 loading="lazy"
