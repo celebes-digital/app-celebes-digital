@@ -24,12 +24,12 @@ export default function Products({
                         Produk Kami
                     </h1>
                     <p className="font-semibold">
-                        Produk yang dapat {" "}
+                        Berikut beberapa produk yang telah kami bangun untuk{" "}
                         <span className="relative">
-                            Membuat
+                            kebutuhan
                             <svg
                                 ref={ref}
-                                className={`${isVisible ? "draw" : ""} path absolute -bottom-2 right-0 w-20 lg:-bottom-2 lg:-right-2 lg:w-[88px]`}
+                                className={`${isVisible ? "draw" : ""} path absolute -bottom-2 right-0 w-20 lg:-bottom-2 lg:w-[85px]`}
                                 width="122"
                                 height="10"
                                 viewBox="0 0 122 10"
@@ -44,7 +44,7 @@ export default function Products({
                                 />
                             </svg>
                         </span>{" "}
-                        Bisnis Anda mendunia.
+                        para klien.
                     </p>
                 </div>
                 {products.length > 0 ? (

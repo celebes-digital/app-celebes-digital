@@ -30,14 +30,14 @@ export default function About({ clients }: { clients: Client[] }) {
             />
             <div className="container flex flex-col items-center space-y-10 overflow-hidden px-5 py-16">
                 <p className="w-fit text-center font-semibold leading-[150%] tracking-[2%]">
-                    Dipercaya oleh perusahaan besar dan kecil,
-                    <span className="relative inline-block sm:ml-1 sm:inline">
-                        di mana pun
+                    Kami dipercaya oleh banyak klien dari berbagai korporasi dan instansi{" "}
+                    <span className="relative  sm:ml-1 sm:inline">
+                        ternama{" "}
                         <svg
                             width="160"
                             ref={svgRef}
                             height="52"
-                            className={`${isVisible ? "draw" : ""} path absolute -bottom-3 right-1/2 w-[104px] translate-x-1/2 md:-right-3 md:-top-4 md:w-28 md:translate-x-0`}
+                            className={`${isVisible ? "draw" : ""} path absolute -bottom-4 right-1/2 w-[80px] translate-x-1/2 md:-right-1 md:-top-4 md:w-20 md:translate-x-0`}
                             viewBox="0 0 160 52"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
@@ -50,6 +50,7 @@ export default function About({ clients }: { clients: Client[] }) {
                             />
                         </svg>
                     </span>
+                    yang berskala lokal maupun nasional untuk digitalisasi.
                 </p>
                 <ClientSlider clients={clients} />
             </div>

@@ -55,15 +55,15 @@ export default function StudiKasus({
                         />
                     </svg>
                     <h1 className="text-3xl font-bold leading-[120%] md:text-4xl lg:text-[42px]">
-                        Studi Kasus
+                        Karya Kami
                     </h1>
                     <p className="font-semibold">
-                        Kasus Nyata, Dampak Nyata: Solusi yang{" "}
+                        Berikut ini kami tampilkan beberapa karya kami yang telah{" "}
                         <span className="relative">
-                            Mengubah
+                            dedikasikan
                             <svg
                                 ref={ref}
-                                className={`${isVisible ? "draw" : ""} path absolute -bottom-2 right-0 w-20 lg:-bottom-2 lg:-right-1 lg:w-[88px]`}
+                                className={`${isVisible ? "draw" : ""} path absolute -bottom-2 right-1 w-20 lg:-bottom-2 lg:w-[88px]`}
                                 width="122"
                                 height="10"
                                 viewBox="0 0 122 10"
@@ -78,7 +78,7 @@ export default function StudiKasus({
                                 />
                             </svg>
                         </span>{" "}
-                        Industri
+                        kepada setiap klien
                     </p>
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

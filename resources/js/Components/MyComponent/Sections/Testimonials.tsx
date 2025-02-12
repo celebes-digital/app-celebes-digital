@@ -21,7 +21,7 @@ export default function Testimonials({
             <div className="font-jakarta container relative space-y-10 px-5 py-20">
                 <div className="space-y-5" id="testimoni">
                     <h2 className="relative mx-auto w-fit text-center text-3xl font-bold leading-[120%] md:text-4xl lg:text-[42px]">
-                        Suara{" "}
+                        Apa Kata{" "}
                         <span className="relative inline-block sm:ml-1 sm:inline">
                             Mereka
                             <svg
@@ -41,7 +41,6 @@ export default function Testimonials({
                                 />
                             </svg>
                         </span>
-                        , Bukti Kami
                     </h2>
                     <p className="text-center font-semibold">
                         Kisah Sukses Klien Kami dalam Kata Mereka Sendiri
