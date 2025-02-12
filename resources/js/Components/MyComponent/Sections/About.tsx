@@ -79,7 +79,7 @@ export default function About({ clients }: { clients: Client[] }) {
                         </h2>
                         <div className="space-y-5">
                             <p className="text-sm leading-[150%] tracking-[1%] md:text-base text-justify">
-                                Kami percaya bahwa setiap bisnis adalah unik,
+                                {/* Kami percaya bahwa setiap bisnis adalah unik,
                                 begitu juga dengan kebutuhan teknologinya. Oleh
                                 karena itu, kami di PT Celebes Solusi Digital
                                 tidak hanya mengembangkan aplikasi, tetapi juga
@@ -91,7 +91,21 @@ export default function About({ clients }: { clients: Client[] }) {
                                 bekerja dengan berbagai industri, termasuk
                                 kesehatan, pendidikan, keuangan, dan e-commerce,
                                 untuk mengoptimalkan operasi dan meningkatkan
-                                pengalaman pengguna.
+                                pengalaman pengguna. */}
+                                Kami percaya bahwa setiap bisnis itu unik,
+                                begitu pun dengan kebutuhan sistem dan
+                                aplikasinya. Karena itu, kami tidak hanya
+                                membuat aplikasi tetapi kami juga merancang dan
+                                membangun aplikasi sebagai solusi yang
+                                benar-benar disesuaikan dengan kebutuhan bisnis
+                                anda. Tim kami terdiri dari profesional yang
+                                telah berpengalaman lebih dari 10 tahun dalam
+                                merancang dan mengembangkan sistem aplikasi yang
+                                kompleks. Kami merasa bangga bisa berkolaborasi
+                                dengan berbagai sektor industri seperti
+                                kesehatan, pendidikan dan keuangan serta
+                                E-commerce untuk meningkatkan efisiensi
+                                dan digitalisasi.
                             </p>
                         </div>
                     </div>
