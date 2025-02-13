@@ -17,7 +17,7 @@ export default function ClientSlider({ clients }: { clients: Client[] }) {
                             loading="lazy"
                             key={i}
                             className="mr-10 opacity-30 transition duration-200 hover:opacity-100"
-                            height={20}
+                            width={150}
                         />
                     ))}
                 </Marquee>
