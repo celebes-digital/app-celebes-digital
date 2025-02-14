@@ -6,7 +6,7 @@ export default function FindUs() {
     return (
         <div className="font-jakarta flex flex-col items-center space-y-16 pt-20">
             <h1 className="relative w-fit text-3xl font-bold leading-[120%] md:text-4xl lg:text-[42px]">
-                Temukan Kami
+                Kami Disini
                 <svg
                     width="41"
                     ref={ref}

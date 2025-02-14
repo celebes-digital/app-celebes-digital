@@ -7,7 +7,7 @@ export default function JoinUs() {
             <div className="my-shadow relative overflow-hidden rounded-xl border-4 border-primary bg-[url('/assets/image/join_bg.webp')] bg-cover bg-center p-10 md:p-16">
                 <div className="space-y-5 text-center lg:max-w-[575px] lg:text-left">
                     <h1 className="text-3xl font-bold leading-[120%] md:text-4xl lg:text-[42px]">
-                        Jangan ragu, segala hal dapat kita bicarakan.
+                        Jangan ragu, segala hal dapat didiskusikan.
                     </h1>
                     <p className="lg:max-w-[431px]">
                         Dengan komunikasi yang baik, kita bisa menemukan solusi terbaik untuk mewujudkan aplikasi impian Anda.
