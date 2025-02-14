@@ -2,11 +2,12 @@ import { Link } from "@inertiajs/react";
 import { Github, Instagram } from "lucide-react";
 
 export default function Footer() {
+    const year = new Date().getFullYear();
     return (
         <div className="font-jakarta bg-primary text-white">
             <div className="container space-y-5 px-5 py-6 md:flex md:items-center md:justify-between md:space-y-0">
                 <h4 className="text-center text-sm font-medium md:text-left">
-                    Copyright © 2024 Celebesdigital | Powered by Celebesdigital
+                    Copyright ©{year} Celebesdigital | PT. Celebes Solusi Digital
                 </h4>
                 <ul className="flex items-center justify-center gap-4 md:justify-start">
                     <li>

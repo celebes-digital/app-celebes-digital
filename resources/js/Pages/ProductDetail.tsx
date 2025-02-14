@@ -46,11 +46,11 @@ export default function ProductDetail({ product }: { product: Product }) {
 
                 <div className="container space-y-20 px-5 py-10">
                     <div className="space-y-5">
-                        <h2 className="font-bold text-2xl">Galeri Produk</h2>
+                        <h2 className="font-bold text-2xl">Galeri {product.name}</h2>
                         <div className="flex items-center overflow-auto scroll-hidden gap-4">
                             {product.screenshots
                                 .map((screenshot, i) => (
-                                    <img src={`/storage/${screenshot}`} width={300} className="rounded-md" alt={screenshot} key={i} />
+                                    <img src={`/storage/${screenshot}`} width={400} className="rounded-md" alt={screenshot} key={i} />
                                 ))}
                         </div>
                     </div>
@@ -85,7 +85,6 @@ export default function ProductDetail({ product }: { product: Product }) {
                                     name="name"
                                     id="name"
                                     onChange={(e) => setData('name', e.target.value)}
-                                    placeholder="Cth. John Doe"
                                     className="rounded-full border px-5 py-2 focus:border-primary focus:outline-none focus:ring-0 focus:ring-offset-0"
                                 />
                                 {errors.name && <span className="text-red-700">{errors.name}</span>}
@@ -100,7 +99,7 @@ export default function ProductDetail({ product }: { product: Product }) {
                                     onChange={(e) => setData('no_telepon', e.target.value)}
                                     name="no_telepon"
                                     id="no_telepon"
-                                    placeholder="Cth. 085"
+                                    placeholder="08XX-XXXX-XXXX"
                                     className="rounded-full border px-5 py-2 focus:border-primary focus:outline-none focus:ring-0 focus:ring-offset-0"
                                 />
                                 {errors.no_telepon && <span className="text-red-700">{errors.no_telepon}</span>}
@@ -116,7 +115,6 @@ export default function ProductDetail({ product }: { product: Product }) {
                                     onChange={(e) => setData('email', e.target.value)}
                                     name="email"
                                     id="email"
-                                    placeholder="johndoe@contoh.com"
                                     className="rounded-full border px-5 py-2 focus:border-primary focus:outline-none focus:ring-0 focus:ring-offset-0"
                                 />
                                 {errors.email && <span className="text-red-700">{errors.email}</span>}

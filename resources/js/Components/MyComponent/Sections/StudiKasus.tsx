@@ -55,7 +55,7 @@ export default function StudiKasus({
                         />
                     </svg>
                     <h1 className="text-3xl font-bold leading-[120%] md:text-4xl lg:text-[42px]">
-                        Karya Kami
+                        Galeri Karya
                     </h1>
                     <p className="font-semibold">
                         Berikut ini kami tampilkan beberapa karya kami yang telah{" "}

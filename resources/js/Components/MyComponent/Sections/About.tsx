@@ -50,7 +50,7 @@ export default function About({ clients }: { clients: Client[] }) {
                             />
                         </svg>
                     </span>
-                    yang berskala lokal maupun nasional untuk digitalisasi.
+                    yang berskala lokal maupun nasional.
                 </p>
                 <ClientSlider clients={clients} />
             </div>
@@ -81,11 +81,7 @@ export default function About({ clients }: { clients: Client[] }) {
                             <p className="text-sm leading-[150%] tracking-[1%] md:text-base text-justify">
                                 Kami percaya bahwa setiap bisnis itu unik,
                                 begitu pun dengan kebutuhan sistem dan
-                                aplikasinya. Karena itu, kami tidak hanya
-                                membuat aplikasi tetapi kami juga merancang dan
-                                membangun aplikasi sebagai solusi yang
-                                benar-benar disesuaikan dengan kebutuhan bisnis
-                                anda.
+                                aplikasinya. Karena itu, kami merancang dan membangun aplikasi sebagai solusi yang benar-benar disesuaikan dengan kebutuhan bisnis anda.
                             </p>
                             <p className="text-sm leading-[150%] tracking-[1%] md:text-base text-justify">
                                 Tim kami terdiri dari profesional yang
