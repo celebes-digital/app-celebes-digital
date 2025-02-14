@@ -16,7 +16,7 @@ export default function ClientSlider({ clients }: { clients: Client[] }) {
                             alt={client.name}
                             loading="lazy"
                             key={i}
-                            className="mr-10 opacity-30 transition duration-200 hover:opacity-100"
+                            className="mr-10 opacity-50 transition duration-200 hover:opacity-100"
                             width={150}
                         />
                     ))}

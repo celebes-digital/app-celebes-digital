@@ -79,26 +79,16 @@ export default function About({ clients }: { clients: Client[] }) {
                         </h2>
                         <div className="space-y-5">
                             <p className="text-sm leading-[150%] tracking-[1%] md:text-base text-justify">
-                                {/* Kami percaya bahwa setiap bisnis adalah unik,
-                                begitu juga dengan kebutuhan teknologinya. Oleh
-                                karena itu, kami di PT Celebes Solusi Digital
-                                tidak hanya mengembangkan aplikasi, tetapi juga
-                                menciptakan solusi khusus untuk membantu bisnis
-                                Anda tumbuh. Tim kami terdiri dari para ahli
-                                berpengalaman di berbagai bidang teknologi,
-                                mulai dari pengembangan aplikasi mobile hingga
-                                sistem backend kompleks. Kami bangga telah
-                                bekerja dengan berbagai industri, termasuk
-                                kesehatan, pendidikan, keuangan, dan e-commerce,
-                                untuk mengoptimalkan operasi dan meningkatkan
-                                pengalaman pengguna. */}
                                 Kami percaya bahwa setiap bisnis itu unik,
                                 begitu pun dengan kebutuhan sistem dan
                                 aplikasinya. Karena itu, kami tidak hanya
                                 membuat aplikasi tetapi kami juga merancang dan
                                 membangun aplikasi sebagai solusi yang
                                 benar-benar disesuaikan dengan kebutuhan bisnis
-                                anda. Tim kami terdiri dari profesional yang
+                                anda.
+                            </p>
+                            <p className="text-sm leading-[150%] tracking-[1%] md:text-base text-justify">
+                                Tim kami terdiri dari profesional yang
                                 telah berpengalaman lebih dari 10 tahun dalam
                                 merancang dan mengembangkan sistem aplikasi yang
                                 kompleks. Kami merasa bangga bisa berkolaborasi

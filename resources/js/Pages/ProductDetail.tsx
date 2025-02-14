@@ -47,7 +47,7 @@ export default function ProductDetail({ product }: { product: Product }) {
                 <div className="container space-y-20 px-5 py-10">
                     <div className="space-y-5">
                         <h2 className="font-bold text-2xl">Galeri Produk</h2>
-                        <div className="space-y-5 flex items-center overflow-auto scroll-hidden gap-4">
+                        <div className="flex items-center overflow-auto scroll-hidden gap-4">
                             {product.screenshots
                                 .map((screenshot, i) => (
                                     <img src={`/storage/${screenshot}`} width={300} className="rounded-md" alt={screenshot} key={i} />
