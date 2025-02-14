@@ -58,7 +58,7 @@ export default function StudiKasus({
                         Galeri Karya
                     </h1>
                     <p className="font-semibold">
-                        Berikut ini kami tampilkan beberapa karya kami yang telah{" "}
+                        Berikut ini kami tampilkan beberapa karya yang telah{" "}
                         <span className="relative">
                             dedikasikan
                             <svg
