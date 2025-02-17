@@ -60,7 +60,7 @@ export default function StudiKasus({
                     <p className="font-semibold">
                         Berikut ini kami tampilkan beberapa karya yang telah{" "}
                         <span className="relative">
-                            dedikasikan
+                            didedikasikan
                             <svg
                                 ref={ref}
                                 className={`${isVisible ? "draw" : ""} path absolute -bottom-2 right-1 w-20 lg:-bottom-2 lg:w-[88px]`}

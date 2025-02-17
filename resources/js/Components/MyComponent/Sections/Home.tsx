@@ -42,7 +42,7 @@ export default function Home() {
                         Percayakan kebutuhan pengembangan website dan aplikasi
                         bisnismu kepada kami untuk membantu perusahaan anda
                         bertransformasi digital dalam mencapai
-                        keunggulan yang kompetetif.
+                        keunggulan yang kompetitif.
                         {/* Dipercaya oleh berbagai perusahaan lokal dan nasional di
                         Indonesia termasuk para pelaku UKM di kota makassar
                         untuk digitalisasi bisnisnya. */}
