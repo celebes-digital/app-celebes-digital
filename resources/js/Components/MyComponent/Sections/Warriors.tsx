@@ -22,7 +22,7 @@ export default function Warriors({ warriors }: { warriors: Warrior[] }) {
                         Warriors
                     </h1>
                     <p className="font-semibold">
-                        Ketemui
+                        Temui
                         <span className="relative ml-1">
                             Tenaga Ahli
                             <svg
